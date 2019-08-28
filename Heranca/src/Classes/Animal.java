@@ -2,10 +2,10 @@
 package Classes;
 
 public class Animal {
-    private String cor;
-    private double peso;
-    private String olhos;
-    private double tamanho;
+    protected String cor;
+    protected double peso;
+    protected String olhos;
+    protected double tamanho;
     
     public Animal(){
         

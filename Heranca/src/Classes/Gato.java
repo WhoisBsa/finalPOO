@@ -11,6 +11,6 @@ public class Gato extends Animal{
     }
     
     public void miar(){
-        System.out.println("Meauuuuuuuuuuuuu");
+        System.out.println("O gato " + this.cor + " Meauuuuuuuuuuuuu");
     }
 }

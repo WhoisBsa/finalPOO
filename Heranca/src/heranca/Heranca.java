@@ -7,12 +7,20 @@ import Classes.Gato;
 
 
 /*
+MODIFICADORES DE ACESSO:
+public - visível por todos;
+private - somente na própria classe;
+protected - subclasses possuem acesso;
+
+ACESSO ATRIBUTOS E MÉTODOS SUPERCLASSE
 Para criar um construtor e acessar os atributos de uma superclasse, é necessário
 usar uma destas formas:
 
 1 - Utilizar os get's e set's da superclasse; Cachorro
 
 2 - usar o super(Tipo parâmetro); Gato
+
+3 - tornar os atributos da superclasse protected; Cachorro
 
 
 */
