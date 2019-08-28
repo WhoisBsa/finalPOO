@@ -104,7 +104,7 @@ public class Cliente {
     
     // TRANSFERÊNCIA
     public void transferencia(double valor, Cliente destinatario){
-        if((this.saldo_da_conta - valor) > 0){
+        if((this.saldo_da_conta - valor) >= 0){
             this.saldo_da_conta -= valor;
             double saldo_destinatario = destinatario.get_saldo_da_conta();
             destinatario.set_saldo_da_conta(saldo_destinatario + valor);
@@ -119,7 +119,7 @@ public class Cliente {
     
     // SAQUE
     public void saque(double valor){
-        if((this.saldo_da_conta - valor) > 0){
+        if((this.saldo_da_conta - valor) >= 0){
             this.saldo_da_conta -= valor;
             menu.saque(valor, this);
         }
