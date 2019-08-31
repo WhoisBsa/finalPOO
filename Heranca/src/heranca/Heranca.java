@@ -7,7 +7,7 @@ import Classes.Gato;
 
 
 /*
-MODIFICADORES DE ACESSO:
+## MODIFICADORES DE ACESSO: ##
 public - visível por todos;
 private - somente na própria classe;
 protected - subclasses possuem acesso;
@@ -22,6 +22,16 @@ usar uma destas formas:
 
 3 - tornar os atributos da superclasse protected; Cachorro
 
+
+## POLIMORFISMO ##
+
+Um método pode ser interpretado de forma diferente por classes
+diferentes, podendo ter o seu comportamento alterado.
+    Método movimentar de Animal e Cachorro
+
+    Classes Quadrado e Círculo tem o mesmo método desenhar(),
+    porém cada uma irá se comportar de forma diferente,
+    desenhando a forma geométrica que representa;
 
 */
 
