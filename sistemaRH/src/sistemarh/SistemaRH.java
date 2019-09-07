@@ -65,7 +65,12 @@ public class SistemaRH {
                     break;
                 
                 case 3:
-                    
+                    for(int i = 0; i < 50; i++){
+                        if(clientes[i] instanceof Cliente){
+                            System.out.print(i + " - ");
+                            clientes[i].mostrarDados();
+                        }
+                    }
                     break;
                     
             }
