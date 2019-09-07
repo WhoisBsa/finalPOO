@@ -23,8 +23,8 @@ public class SistemaRH {
         
         while(true){
             System.out.println("1 - Cadastrar cliente");
-            System.out.println("2 - Cadastrar cliente");
-            System.out.println("3 - Cadastrar cliente");
+            System.out.println("2 - Verificar dados do cliente(código)");
+            System.out.println("3 - Visualizar todos clientes cadastrados");
             
             op = s.nextInt();
             
@@ -32,20 +32,28 @@ public class SistemaRH {
                 case 1:
                     System.out.println("Nome: ");
                     nome = s.next();
-                    System.out.println(nome);
+                    //System.out.println(nome);
                     
                     System.out.print("Idade: ");
                     idade = s.nextInt();
                     s.nextLine();
                     
-                    System.out.println(idade);
+                    //System.out.println(idade);
                     System.out.print("Tipo: ");
                     tipo = s.nextLine();
-                    System.out.println(tipo);
+                    //System.out.println(tipo);
                     
                     clientes[posicao] = new Cliente(nome, idade, tipo);
-                    posicao++;
+                    
+                    if(clientes[posicao] instanceof Cliente){
+                        System.out.println("Cliente cadastrado com sucesso!");
+                    }
+                    else{
+                        System.out.println("Falha ao cadastrar cliente!");
+                    }
+                    
                     clientes[posicao].mostrarDados();
+                    posicao++;
                     break;
                     
                     
