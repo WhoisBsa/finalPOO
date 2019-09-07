@@ -32,30 +32,41 @@ public class SistemaRH {
                 case 1:
                     System.out.println("Nome: ");
                     nome = s.next();
-                    //System.out.println(nome);
-                    
+                                        
                     System.out.print("Idade: ");
                     idade = s.nextInt();
                     s.nextLine();
                     
-                    //System.out.println(idade);
                     System.out.print("Tipo: ");
                     tipo = s.nextLine();
-                    //System.out.println(tipo);
-                    
+                                        
                     clientes[posicao] = new Cliente(nome, idade, tipo);
                     
                     if(clientes[posicao] instanceof Cliente){
                         System.out.println("Cliente cadastrado com sucesso!");
+                        clientes[posicao].mostrarDados();
                     }
                     else{
                         System.out.println("Falha ao cadastrar cliente!");
                     }
-                    
-                    clientes[posicao].mostrarDados();
+                                        
                     posicao++;
                     break;
                     
+                case 2:
+                    System.out.println("Qual o código do cliente?");
+                    op = s.nextInt();
+                    if(clientes[op] instanceof Cliente){
+                        clientes[op].mostrarDados();
+                    }
+                    else{
+                        System.out.println("Cliente não encontrado!");
+                    }
+                    break;
+                
+                case 3:
+                    
+                    break;
                     
             }
             
