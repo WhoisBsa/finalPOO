@@ -74,6 +74,9 @@ public class Inicio extends javax.swing.JFrame {
         
         if(login.equals("joao") && senha.equals("123")){
             JOptionPane.showMessageDialog(rootPane, "Bem vindo!");
+            Home home = new Home();
+            home.setVisible(true);
+            this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Senha incorreta!");
