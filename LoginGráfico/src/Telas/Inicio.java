@@ -73,10 +73,10 @@ public class Inicio extends javax.swing.JFrame {
         String senha = String.valueOf(pwdSenha.getPassword());
         
         if(login.equals("joao") && senha.equals("123")){
-            
+            JOptionPane.showMessageDialog(rootPane, "Bem vindo!");
         }
         else{
-            
+            JOptionPane.showMessageDialog(rootPane, "Senha incorreta!");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
