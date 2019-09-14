@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Telas;
 import javax.swing.JOptionPane;
-/**
- *
- * @author hemilio
- */
-public class TelaLogin extends javax.swing.JFrame {
+import Classes.Usuario;
 
-    /**
-     * Creates new form Inicio
-     */
+public class TelaLogin extends javax.swing.JFrame {
+    
+    protected Usuario usuarios[] = new Usuario[4]; 
+
     public TelaLogin() {
         initComponents();
+    }
+    
+    public TelaLogin(Usuario i[]){
+        
+        this.usuarios = i;
+        System.out.println(i[0].getNome());
+        System.out.println("hgfhgdhfdhjhg");
     }
 
     /**
@@ -85,15 +85,19 @@ public class TelaLogin extends javax.swing.JFrame {
         String login = txtLogin.getText();
         String senha = String.valueOf(pwdSenha.getPassword());
         
-        if(login.equals("joao") && senha.equals("123")){
-            JOptionPane.showMessageDialog(rootPane, "Bem vindo!");
-            TelaCadastro telaCadastro = new TelaCadastro();
-            telaCadastro.setVisible(true);
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Senha incorreta!");
-        }
+//        for(Usuario u: usuarios){
+//            if(login.equals(u.getNome()) && senha.equals(u.getSenha())){
+//                JOptionPane.showMessageDialog(rootPane, "Bem vindo!");
+//                TelaCadastro telaCadastro = new TelaCadastro();
+//                telaCadastro.setVisible(true);
+//                this.dispose();
+//            }
+//            else{
+//                JOptionPane.showMessageDialog(rootPane, "Senha incorreta!");
+//            }
+//        }
+        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

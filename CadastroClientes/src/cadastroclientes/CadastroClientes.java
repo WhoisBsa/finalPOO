@@ -5,6 +5,7 @@
  */
 package cadastroclientes;
 
+import Classes.Usuario;
 import Telas.TelaLogin;
 
 /**
@@ -13,12 +14,18 @@ import Telas.TelaLogin;
  */
 public class CadastroClientes {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        TelaLogin login = new TelaLogin();
+        Usuario usuarios[] = new Usuario[4];
+        
+        usuarios[0] = new Usuario("a","1");
+        usuarios[1] = new Usuario("b","2");
+        usuarios[2] = new Usuario("c","3");
+        usuarios[3] = new Usuario("d","4");
+        
+        TelaLogin login = new TelaLogin(usuarios);
+        
         login.setVisible(true);
+        System.out.println("tela login");
     }
     
 }
