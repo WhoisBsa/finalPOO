@@ -5,6 +5,8 @@
  */
 package cadastroclientes;
 
+import Telas.TelaLogin;
+
 /**
  *
  * @author hemilio
@@ -15,7 +17,8 @@ public class CadastroClientes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        TelaLogin login = new TelaLogin();
+        login.setVisible(true);
     }
     
 }
