@@ -12,10 +12,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }
     
     public TelaLogin(Usuario i[]){
-        
+        initComponents();
         this.usuarios = i;
-        System.out.println(i[0].getNome());
-        System.out.println("hgfhgdhfdhjhg");
     }
 
     /**
