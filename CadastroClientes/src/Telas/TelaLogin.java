@@ -82,18 +82,22 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String login = txtLogin.getText();
         String senha = String.valueOf(pwdSenha.getPassword());
+        boolean statusLogin = false;
         
-//        for(Usuario u: usuarios){
-//            if(login.equals(u.getNome()) && senha.equals(u.getSenha())){
-//                JOptionPane.showMessageDialog(rootPane, "Bem vindo!");
-//                TelaCadastro telaCadastro = new TelaCadastro();
-//                telaCadastro.setVisible(true);
-//                this.dispose();
-//            }
-//            else{
-//                JOptionPane.showMessageDialog(rootPane, "Senha incorreta!");
-//            }
-//        }
+        for(Usuario u: usuarios){
+            if(login.equals(u.getNome()) && senha.equals(u.getSenha())){
+                JOptionPane.showMessageDialog(rootPane, "Bem vindo!");
+                statusLogin = true;
+                TelaCadastro telaCadastro = new TelaCadastro();
+                telaCadastro.setVisible(true);
+                this.dispose();
+            }
+        }
+        
+        if(statusLogin == false){
+            JOptionPane.showMessageDialog(rootPane, "Senha incorreta!");
+        }
+        
         
 
     }//GEN-LAST:event_btnLoginActionPerformed
