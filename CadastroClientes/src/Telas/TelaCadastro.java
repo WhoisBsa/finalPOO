@@ -1,7 +1,12 @@
 
 package Telas;
 
+import Classes.Cliente;
+
 public class TelaCadastro extends javax.swing.JFrame {
+    
+    protected Cliente clientes[] = new Cliente[10];
+    protected int posicaoCadastro = 0;
 
     public TelaCadastro() {
         initComponents();
@@ -11,24 +16,24 @@ public class TelaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
+        txtCPF = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtBuscarNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
 
@@ -40,7 +45,12 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel4.setText("Endereço:");
 
-        jButton2.setText("Buscar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,24 +69,24 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)))
+                                    .addComponent(txtCPF)
+                                    .addComponent(txtNome)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField3)))))
+                                    .addComponent(txtBuscarNome)
+                                    .addComponent(txtEndereco)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(238, 238, 238)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(258, 258, 258)
-                                .addComponent(jButton2)))
+                                .addComponent(btnBuscar)))
                         .addGap(0, 234, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -85,33 +95,46 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnCadastrar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnBuscar)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        String nome = txtNome.getText();
+        String cpf = txtCPF.getText();
+        String endereco = txtEndereco.getText();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        clientes[posicaoCadastro] = new Cliente(nome, cpf, endereco);
+        posicaoCadastro += 1;
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        for(Cliente u : clientes){
+            System.out.println(u.getNome());
+            System.out.println(u.getCpf());
+            System.out.println(u.getEndereco());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,15 +172,15 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtBuscarNome;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
