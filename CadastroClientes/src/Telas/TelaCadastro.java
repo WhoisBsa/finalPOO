@@ -126,22 +126,27 @@ public class TelaCadastro extends javax.swing.JFrame {
         
         clientes[posicaoCadastro] = new Cliente(nome, cpf, endereco);
         posicaoCadastro += 1;
-        limparTxt();
+        limparTxtCadastro();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         for(Cliente u : clientes){
-            System.out.println(u.getNome());
-            System.out.println(u.getCpf());
-            System.out.println(u.getEndereco());
+            if(u != null){
+                System.out.println(u.getNome());
+                System.out.println(u.getCpf());
+                System.out.println(u.getEndereco());
+            }
+            
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    public void limparTxt(){
+    public void limparTxtCadastro(){
         txtNome.setText("");
         txtCPF.setText("");
         txtEndereco.setText("");
     }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
