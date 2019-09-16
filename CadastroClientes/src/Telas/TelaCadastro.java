@@ -2,10 +2,11 @@
 package Telas;
 
 import Classes.Cliente;
+import javax.swing.JOptionPane;
 
 public class TelaCadastro extends javax.swing.JFrame {
-    
-    protected Cliente clientes[] = new Cliente[10];
+    protected int numRegistros = 3;
+    protected Cliente clientes[] = new Cliente[numRegistros];
     protected int posicaoCadastro = 0;
 
     public TelaCadastro() {
@@ -25,7 +26,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtBuscarNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
+        btnBuscarTodosTerminal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
@@ -45,10 +46,10 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel4.setText("Endereço:");
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarTodosTerminal.setText("Buscar");
+        btnBuscarTodosTerminal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarTodosTerminalActionPerformed(evt);
             }
         });
 
@@ -86,7 +87,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(258, 258, 258)
-                                .addComponent(btnBuscar)))
+                                .addComponent(btnBuscarTodosTerminal)))
                         .addGap(0, 234, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -112,7 +113,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(txtBuscarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscar)
+                .addComponent(btnBuscarTodosTerminal)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -124,12 +125,19 @@ public class TelaCadastro extends javax.swing.JFrame {
         String cpf = txtCPF.getText();
         String endereco = txtEndereco.getText();
         
-        clientes[posicaoCadastro] = new Cliente(nome, cpf, endereco);
-        posicaoCadastro += 1;
+        if(posicaoCadastro == numRegistros){
+            JOptionPane.showMessageDialog(rootPane, "Atingido o número máximo de cadastros!");
+        }
+        else{
+            clientes[posicaoCadastro] = new Cliente(nome, cpf, endereco);
+            JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+            posicaoCadastro += 1;
+        }
+        
         limparTxtCadastro();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void btnBuscarTodosTerminalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTodosTerminalActionPerformed
         for(Cliente u : clientes){
             if(u != null){
                 System.out.println(u.getNome());
@@ -138,7 +146,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
             
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_btnBuscarTodosTerminalActionPerformed
 
     public void limparTxtCadastro(){
         txtNome.setText("");
@@ -180,7 +188,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarTodosTerminal;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
