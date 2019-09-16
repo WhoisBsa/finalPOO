@@ -55,6 +55,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +155,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         limparTxtCadastro();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    
     private void btnBuscarTodosTerminalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTodosTerminalActionPerformed
         for(Cliente u : clientes){
             if(u != null){
@@ -159,13 +165,35 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
             
         }
+        
     }//GEN-LAST:event_btnBuscarTodosTerminalActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        for(Cliente u : clientes){
+            
+            if(u != null){
+                System.out.println("Nome da posição: " + u.getNome());
+                System.out.println("Nome da busca: " + txtBuscarNome.getText());
+                if(u.getNome().equals(txtBuscarNome.getText())){
+                    //System.out.println("Encontrado");
+                    JOptionPane.showMessageDialog(rootPane, "Nome: " + u.getNome() + "\n CPF: " + u.getCpf() + "\n Endereço: " + u.getEndereco() + "\n");
+                    //JOptionPane.showMessageDialog(rootPane, "CPF: " + u.getCpf());
+                    //JOptionPane.showMessageDialog(rootPane, "Endereço: " + u.getEndereco());
+                }
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    
     public void limparTxtCadastro(){
         txtNome.setText("");
         txtCPF.setText("");
         txtEndereco.setText("");
     }
+    
     
     public boolean verificarCampos(String nome, String cpf, String endereco){
         boolean campoVazio = true;
@@ -176,6 +204,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     
         return campoVazio;
     }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
