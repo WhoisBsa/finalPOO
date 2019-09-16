@@ -27,6 +27,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtBuscarNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnBuscarTodosTerminal = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 600));
@@ -46,12 +47,14 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel4.setText("Endereço:");
 
-        btnBuscarTodosTerminal.setText("Buscar");
+        btnBuscarTodosTerminal.setText("Exibir todos no terminal");
         btnBuscarTodosTerminal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarTodosTerminalActionPerformed(evt);
             }
         });
+
+        btnBuscar.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,15 +84,17 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addComponent(txtBuscarNome)
                                     .addComponent(txtEndereco)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(238, 238, 238)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(258, 258, 258)
-                                .addComponent(btnBuscarTodosTerminal)))
-                        .addGap(0, 234, Short.MAX_VALUE)))
+                        .addGap(238, 238, 238)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 234, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnBuscarTodosTerminal)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(btnBuscar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,8 +118,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(txtBuscarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
+                .addComponent(btnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnBuscarTodosTerminal)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -129,9 +136,15 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Atingido o número máximo de cadastros!");
         }
         else{
-            clientes[posicaoCadastro] = new Cliente(nome, cpf, endereco);
-            JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
-            posicaoCadastro += 1;
+            if(verificarCampos(nome, cpf, endereco)){
+                clientes[posicaoCadastro] = new Cliente(nome, cpf, endereco);
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                posicaoCadastro += 1;
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
+            }
+            
         }
         
         limparTxtCadastro();
@@ -154,7 +167,15 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtEndereco.setText("");
     }
     
+    public boolean verificarCampos(String nome, String cpf, String endereco){
+        boolean campoVazio = true;
+        
+        if(nome.isBlank() || cpf.isBlank() || endereco.isBlank()){
+            campoVazio = false;
+        }
     
+        return campoVazio;
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -188,6 +209,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarTodosTerminal;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
