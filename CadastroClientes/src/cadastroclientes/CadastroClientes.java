@@ -25,7 +25,6 @@ public class CadastroClientes {
         TelaLogin login = new TelaLogin(usuarios);
         
         login.setVisible(true);
-        System.out.println("tela login");
     }
     
 }
