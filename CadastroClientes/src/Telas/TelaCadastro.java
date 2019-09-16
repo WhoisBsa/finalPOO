@@ -169,20 +169,25 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarTodosTerminalActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String resultado = "";
+        
         for(Cliente u : clientes){
-            
             if(u != null){
-                System.out.println("Nome da posição: " + u.getNome());
-                System.out.println("Nome da busca: " + txtBuscarNome.getText());
                 if(u.getNome().equals(txtBuscarNome.getText())){
-                    //System.out.println("Encontrado");
-                    JOptionPane.showMessageDialog(rootPane, "Nome: " + u.getNome() + "\n CPF: " + u.getCpf() + "\n Endereço: " + u.getEndereco() + "\n");
-                    //JOptionPane.showMessageDialog(rootPane, "CPF: " + u.getCpf());
-                    //JOptionPane.showMessageDialog(rootPane, "Endereço: " + u.getEndereco());
+                    resultado += "Nome: " + u.getNome() 
+                            + "\n CPF: " + u.getCpf() 
+                            + "\n Endereço: " + u.getEndereco() 
+                            + "\n******************\n";
                 }
                 
             }
             
+        }
+        if(!resultado.isBlank()){
+            JOptionPane.showMessageDialog(rootPane, resultado);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Nenhum registro encontrado!");
         }
         
     }//GEN-LAST:event_btnBuscarActionPerformed
