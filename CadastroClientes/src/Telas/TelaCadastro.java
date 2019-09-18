@@ -5,7 +5,7 @@ import Classes.Cliente;
 import javax.swing.JOptionPane;
 
 public class TelaCadastro extends javax.swing.JFrame {
-    protected int numRegistros = 3;
+    protected int numRegistros = 10;
     protected Cliente clientes[] = new Cliente[numRegistros];
     protected int posicaoCadastro = 0;
 
