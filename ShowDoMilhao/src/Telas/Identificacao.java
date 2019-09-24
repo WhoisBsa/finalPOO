@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 import Classes.Jogador;
 
 public class Identificacao extends javax.swing.JFrame { 
-
+  
+    
     public Identificacao() {
         initComponents();
     }
