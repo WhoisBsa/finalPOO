@@ -54,7 +54,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                              <Component id="aaa" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConfirmar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnPular" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -103,7 +103,7 @@
               <Component id="radioResposta4" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="39" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="aaa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnPular" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnParar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -118,12 +118,12 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="aaa">
+    <Component class="javax.swing.JButton" name="btnConfirmar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aaaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPular">
