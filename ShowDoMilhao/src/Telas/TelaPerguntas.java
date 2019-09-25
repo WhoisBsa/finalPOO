@@ -191,12 +191,20 @@ public class TelaPerguntas extends javax.swing.JFrame {
             posicao += 1;
             posicaoPonto += 1;
             this.jogador.setPontos(pontos[posicaoPonto]);
-            setPerguntas();
+            if(this.jogador.getPontos() == 1000000){
+                JOptionPane.showMessageDialog(rootPane, "Você ganhou R$" + this.jogador.getPontos() + ",00");
+                this.dispose();
+            }
+            else{
+                setPerguntas();
+            }
+            
         }
         else{
             this.jogador.setPontos(pontos[posicaoPonto] / 2);
-            System.out.println(this.jogador.getPontos());
+            //System.out.println(this.jogador.getPontos());
             JOptionPane.showMessageDialog(rootPane, "Resposta errada!");
+            JOptionPane.showMessageDialog(rootPane, "Você ganhou R$" + this.jogador.getPontos() + ",00");
             this.dispose();
         }
         
