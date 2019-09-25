@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 public class TelaPerguntas extends javax.swing.JFrame {
     private int numPerguntas = 12;
+    private int posicao = 0;
     protected int resposta;
     protected Jogador jogador = new Jogador();
     Perguntas perguntas[] = new Perguntas[numPerguntas];
@@ -170,8 +171,11 @@ public class TelaPerguntas extends javax.swing.JFrame {
         if(resposta == 0){
             JOptionPane.showMessageDialog(rootPane, "Glu glu faltou responder!!!");
         }
-        else if(resposta == perguntas[0].getAlternativaCorreta()){
+        else if(resposta == perguntas[posicao].getAlternativaCorreta()){
             JOptionPane.showMessageDialog(rootPane, "Glu glu ahhhhhhhhhh ié ié!!!");
+            posicao += 1;
+            setPerguntas();
+            
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Glu glu salsi fu fu!!!");
@@ -201,7 +205,12 @@ public class TelaPerguntas extends javax.swing.JFrame {
     }//GEN-LAST:event_lblPerguntaAncestorAdded
 
     public void setPerguntas(){
-        
+        lblPergunta.setText(perguntas[posicao].getPergunta());
+        radioResposta1.setText(perguntas[posicao].getAlternativaA());
+        radioResposta2.setText(perguntas[posicao].getAlternativaB());
+        radioResposta3.setText(perguntas[posicao].getAlternativaC());
+        radioResposta4.setText(perguntas[posicao].getAlternativaD());
+        buttonGroup1.clearSelection();
     }
     
     /**
