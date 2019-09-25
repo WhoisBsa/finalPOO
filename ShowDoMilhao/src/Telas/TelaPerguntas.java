@@ -10,6 +10,7 @@ public class TelaPerguntas extends javax.swing.JFrame {
     protected int resposta;
     protected int pontos[] = {0, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000};
     protected int posicaoPonto = 0;
+    protected int pulo = 0;
     protected Jogador jogador = new Jogador();
     Perguntas perguntas[] = new Perguntas[numPerguntas];
     
@@ -42,6 +43,7 @@ public class TelaPerguntas extends javax.swing.JFrame {
         radioResposta4 = new javax.swing.JRadioButton();
         lblPergunta = new javax.swing.JLabel();
         lblPontos = new javax.swing.JLabel();
+        lblPulos = new javax.swing.JLabel();
 
         jRadioButton3.setText("jRadioButton1");
 
@@ -57,8 +59,18 @@ public class TelaPerguntas extends javax.swing.JFrame {
         });
 
         btnPular.setText("Pular");
+        btnPular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPularActionPerformed(evt);
+            }
+        });
 
         btnParar.setText("Parar");
+        btnParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPararActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(radioResposta2);
         radioResposta2.setText("jRadioButton1");
@@ -85,6 +97,8 @@ public class TelaPerguntas extends javax.swing.JFrame {
 
         lblPontos.setText("jLabel2");
 
+        lblPulos.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,38 +106,35 @@ public class TelaPerguntas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblNomeJogador))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radioResposta1)
-                                    .addComponent(radioResposta3))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(339, Short.MAX_VALUE)
+                        .addComponent(lblNomeJogador))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(btnConfirmar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPular)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnParar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(radioResposta2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(radioResposta4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblPergunta)))
+                        .addGap(117, 117, 117)
+                        .addComponent(btnConfirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPular)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnParar)
                         .addGap(0, 28, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblPontos)))
+                        .addComponent(lblPontos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radioResposta1)
+                                    .addComponent(radioResposta3)
+                                    .addComponent(radioResposta2)
+                                    .addComponent(radioResposta4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(lblPergunta)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblPulos)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -133,7 +144,9 @@ public class TelaPerguntas extends javax.swing.JFrame {
                 .addComponent(lblNomeJogador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPontos)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPulos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(lblPergunta)
                 .addGap(18, 18, 18)
                 .addComponent(radioResposta1)
@@ -143,7 +156,7 @@ public class TelaPerguntas extends javax.swing.JFrame {
                 .addComponent(radioResposta3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioResposta4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
                     .addComponent(btnPular)
@@ -171,10 +184,10 @@ public class TelaPerguntas extends javax.swing.JFrame {
         }
         
         if(resposta == 0){
-            JOptionPane.showMessageDialog(rootPane, "Glu glu faltou responder!!!");
+            JOptionPane.showMessageDialog(rootPane, "Marque uma alternativa!");
         }
         else if(resposta == perguntas[posicao].getAlternativaCorreta()){
-            JOptionPane.showMessageDialog(rootPane, "Glu glu ahhhhhhhhhh ié ié!!!");
+            JOptionPane.showMessageDialog(rootPane, "Resposta exata!");
             posicao += 1;
             posicaoPonto += 1;
             this.jogador.setPontos(pontos[posicaoPonto]);
@@ -183,7 +196,7 @@ public class TelaPerguntas extends javax.swing.JFrame {
         else{
             this.jogador.setPontos(pontos[posicaoPonto] / 2);
             System.out.println(this.jogador.getPontos());
-            JOptionPane.showMessageDialog(rootPane, "Glu glu salsi fu fu!!!");
+            JOptionPane.showMessageDialog(rootPane, "Resposta errada!");
             this.dispose();
         }
         
@@ -204,6 +217,26 @@ public class TelaPerguntas extends javax.swing.JFrame {
         perguntas[11] = new Perguntas("1+12","1","13","3","4",2);
         setPerguntas();
     }//GEN-LAST:event_lblPerguntaAncestorAdded
+
+    private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
+        System.out.println(this.jogador.getPontos());
+        JOptionPane.showMessageDialog(rootPane, "Você parou com R$" + this.jogador.getPontos() + "!!!");
+        this.dispose();
+    }//GEN-LAST:event_btnPararActionPerformed
+
+    private void btnPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPularActionPerformed
+        if(pulo < 2 && this.jogador.getPontos() < 500000){
+            pulo += 1;
+            posicao += 1;
+            setPerguntas();
+        }
+        else if (pulo < 2 && !(this.jogador.getPontos() < 500000)){
+            JOptionPane.showMessageDialog(rootPane, "Você não pode pular a pergunta de R$1.000.000,00!");
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Você não tem mais pulos!");
+        }
+    }//GEN-LAST:event_btnPularActionPerformed
     
     public void setPerguntas(){
         lblPergunta.setText(perguntas[posicao].getPergunta());
@@ -211,9 +244,11 @@ public class TelaPerguntas extends javax.swing.JFrame {
         radioResposta2.setText(perguntas[posicao].getAlternativaB());
         radioResposta3.setText(perguntas[posicao].getAlternativaC());
         radioResposta4.setText(perguntas[posicao].getAlternativaD());
+        lblPulos.setText(String.valueOf("Pulos: " + (2 - pulo)));
         lblPontos.setText("R$" + String.valueOf(this.jogador.getPontos()));
         buttonGroup1.clearSelection();
     }
+    
     
     /**
      * @param args the command line arguments
@@ -259,6 +294,7 @@ public class TelaPerguntas extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeJogador;
     private javax.swing.JLabel lblPergunta;
     private javax.swing.JLabel lblPontos;
+    private javax.swing.JLabel lblPulos;
     private javax.swing.JRadioButton radioResposta1;
     private javax.swing.JRadioButton radioResposta2;
     private javax.swing.JRadioButton radioResposta3;
