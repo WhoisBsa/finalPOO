@@ -14,10 +14,13 @@ public class TelaPerguntas extends javax.swing.JFrame {
     protected Jogador jogador = new Jogador();
     Perguntas perguntas[] = new Perguntas[numPerguntas];
     
+    
+    // Construtor simples
     public TelaPerguntas() {
         initComponents();    
     }
     
+    // Construtor com parâmetros
     public TelaPerguntas(Jogador jogador) {
         initComponents();
         this.jogador = jogador;
@@ -25,8 +28,6 @@ public class TelaPerguntas extends javax.swing.JFrame {
         lblPontos.setText("R$" + String.valueOf(this.jogador.getPontos()));
     }
     
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -253,10 +254,13 @@ public class TelaPerguntas extends javax.swing.JFrame {
         radioResposta3.setText(perguntas[posicao].getAlternativaC());
         radioResposta4.setText(perguntas[posicao].getAlternativaD());
         lblPulos.setText(String.valueOf("Pulos: " + (2 - pulo)));
-        lblPontos.setText("R$" + String.valueOf(this.jogador.getPontos()));
+        lblPontos.setText("R$" + String.valueOf(this.jogador.getPontos()) + ",00");
         buttonGroup1.clearSelection();
     }
     
+    public void tocarFX(){
+        
+    }
     
     /**
      * @param args the command line arguments
