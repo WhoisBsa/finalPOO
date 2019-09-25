@@ -8,6 +8,8 @@ public class TelaPerguntas extends javax.swing.JFrame {
     private int numPerguntas = 12;
     private int posicao = 0;
     protected int resposta;
+    protected int pontos[] = {0, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000};
+    protected int posicaoPonto = 0;
     protected Jogador jogador = new Jogador();
     Perguntas perguntas[] = new Perguntas[numPerguntas];
     
@@ -174,10 +176,13 @@ public class TelaPerguntas extends javax.swing.JFrame {
         else if(resposta == perguntas[posicao].getAlternativaCorreta()){
             JOptionPane.showMessageDialog(rootPane, "Glu glu ahhhhhhhhhh ié ié!!!");
             posicao += 1;
+            posicaoPonto += 1;
+            this.jogador.setPontos(pontos[posicaoPonto]);
             setPerguntas();
-            
         }
         else{
+            this.jogador.setPontos(pontos[posicaoPonto] / 2);
+            System.out.println(this.jogador.getPontos());
             JOptionPane.showMessageDialog(rootPane, "Glu glu salsi fu fu!!!");
             this.dispose();
         }
@@ -197,19 +202,16 @@ public class TelaPerguntas extends javax.swing.JFrame {
         perguntas[9] = new Perguntas("1+10","1","2","11","4",3);
         perguntas[10] = new Perguntas("1+11","1","2","3","12",4);
         perguntas[11] = new Perguntas("1+12","1","13","3","4",2);
-        lblPergunta.setText(perguntas[0].getPergunta());
-        radioResposta1.setText(perguntas[0].getAlternativaA());
-        radioResposta2.setText(perguntas[0].getAlternativaB());
-        radioResposta3.setText(perguntas[0].getAlternativaC());
-        radioResposta4.setText(perguntas[0].getAlternativaD());
+        setPerguntas();
     }//GEN-LAST:event_lblPerguntaAncestorAdded
-
+    
     public void setPerguntas(){
         lblPergunta.setText(perguntas[posicao].getPergunta());
         radioResposta1.setText(perguntas[posicao].getAlternativaA());
         radioResposta2.setText(perguntas[posicao].getAlternativaB());
         radioResposta3.setText(perguntas[posicao].getAlternativaC());
         radioResposta4.setText(perguntas[posicao].getAlternativaD());
+        lblPontos.setText("R$" + String.valueOf(this.jogador.getPontos()));
         buttonGroup1.clearSelection();
     }
     
