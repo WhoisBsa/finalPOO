@@ -4,6 +4,11 @@ import Classes.Jogador;
 import Classes.Perguntas;
 import javax.swing.JOptionPane;
 
+//Bibliotecas Audio
+import java.io.*;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
+
 public class TelaPerguntas extends javax.swing.JFrame {
     private int numPerguntas = 12;
     private int posicao = 0;
@@ -26,6 +31,7 @@ public class TelaPerguntas extends javax.swing.JFrame {
         this.jogador = jogador;
         lblNomeJogador.setText(this.jogador.getNome());
         lblPontos.setText("R$" + String.valueOf(this.jogador.getPontos()));
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -259,7 +265,16 @@ public class TelaPerguntas extends javax.swing.JFrame {
     }
     
     public void tocarFX(){
-        
+        try{
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File("./src/Media/1000.wav")));
+            //clip.open(AudioSystem.getAudioInputStream("/src/audio/sample.wav"));
+            clip.start();
+            clip.loop(3);
+        }
+        catch (Exception exc){
+            exc.printStackTrace(System.out);
+        }
     }
     
     /**
