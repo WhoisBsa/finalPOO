@@ -31,7 +31,7 @@ public class ContaCorrente extends ContaBancaria{
 
     @Override
     public void depositar(Double deposito) {
-        double taxaDeposito = 0;
+        double taxaDeposito;
         
         double saldoAtual = this.getSaldo();
         

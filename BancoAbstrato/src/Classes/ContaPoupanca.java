@@ -4,6 +4,14 @@ package Classes;
 public class ContaPoupanca extends ContaBancaria{
     protected double limite = -50.0;
     
+    public ContaPoupanca(){
+        
+    }
+    
+    public ContaPoupanca(String numConta, double saldo){
+        super(numConta, saldo);
+    }
+    
     @Override
     public void sacar(Double saque) {
         if((this.getSaldo() - saque) >= limite){
@@ -30,13 +38,13 @@ public class ContaPoupanca extends ContaBancaria{
     @Override
     public void transferirCorrente(Double valor, ContaCorrente cc) {
         this.sacar(valor);
-        cc.setSaldo(valor + cc.getSaldo());
+        cc.depositar(valor);
     }
     
     @Override
     public void transferirPoupanca(Double valor, ContaPoupanca cp) {
         this.sacar(valor);
-        cp.setSaldo(valor + cp.getSaldo());
+        cp.depositar(valor);
     }
     
 }

@@ -2,35 +2,36 @@
 package Classes;
 
 public class Banco {
-    ContaPoupanca cp[] = new ContaPoupanca[10];
-    ContaCorrente cc[] = new ContaCorrente[10];
+    public ContaPoupanca cp[] = new ContaPoupanca[10];
+    public ContaCorrente cc[] = new ContaCorrente[10];
     
-    public boolean inserir(ContaPoupanca cp[], ContaPoupanca novo){
+    public boolean inserir(String numConta, double saldo, int tipo){
         boolean a = false;
-        for(ContaPoupanca u : cp){
-            if(u == null){
-                u = novo;
-                return true;
+        
+        if(tipo == 0){ // POUPANÇA
+            for(ContaPoupanca u : cp){
+                if(u == null){
+                    u = new ContaPoupanca(numConta, saldo);
+                    a = true;
+                }
+                else{
+                    a = false;
+                }
             }
-            else{
-                return false;
-            }
+            return a;
         }
-        return a;
-    }
-    
-    public boolean inserir(ContaCorrente cc[], ContaCorrente novo){
-        boolean a = false;
-        for(ContaCorrente u : cc){
-            if(u == null){
-                u = novo;
-                a = true;
+        else{// CORRENTE
+            for(ContaCorrente u : cc){
+                if(u == null){
+                    u = new ContaCorrente(numConta, saldo);
+                    a = true;
+                }
+                else{
+                    a = false;
+                }
             }
-            else{
-                a = false;
-            }
+            return a;
         }
-        return a;
     }
     
     public void remover(ContaPoupanca cp){
