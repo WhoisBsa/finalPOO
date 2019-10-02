@@ -9,12 +9,7 @@ public class BancoAbstrato {
 
     public static void main(String[] args) {
         
-        Banco banco = new Banco();
-        
-        banco.inserir("aaa", 12.0, 0);
-        
-        System.out.println(banco.cp[0].getSaldo());
-        System.out.println(banco.cp[1].getSaldo());
+     
         
         
         
