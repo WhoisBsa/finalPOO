@@ -17,8 +17,8 @@ public class Principal extends javax.swing.JFrame {
     Banco banco = new Banco();
     ContaCorrente cc;
     ContaPoupanca cp;
-    int numeroConta;
-    double saldo;
+    int numeroConta, numeroContaDestino;
+    double saldo, deposito, saque, transferir;
     
     
 
@@ -39,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         txtNumConta = new javax.swing.JTextField();
         txtSaldo = new javax.swing.JTextField();
         btnCriar = new javax.swing.JButton();
@@ -49,6 +50,19 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
+        btnDepositar = new javax.swing.JButton();
+        btnSacar = new javax.swing.JButton();
+        btnTransferir = new javax.swing.JButton();
+        txtDeposito = new javax.swing.JTextField();
+        txtSaque = new javax.swing.JTextField();
+        txtValorTransferir = new javax.swing.JTextField();
+        rbCorrenteTrans = new javax.swing.JRadioButton();
+        rbPoupancaTrans = new javax.swing.JRadioButton();
+        txtContaDestino = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +91,7 @@ public class Principal extends javax.swing.JFrame {
         buttonGroup1.add(rbPoupanca);
         rbPoupanca.setText("Poupança");
 
+        lblDadosConta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDadosConta.setText("Selecione o tipo de conta antes de realizar qualquer operação.");
 
         jLabel1.setText("Numero:");
@@ -91,65 +106,151 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnDepositar.setText("Depositar");
+        btnDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositarActionPerformed(evt);
+            }
+        });
+
+        btnSacar.setText("Sacar");
+        btnSacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSacarActionPerformed(evt);
+            }
+        });
+
+        btnTransferir.setText("Transferir");
+        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rbCorrenteTrans);
+        rbCorrenteTrans.setSelected(true);
+        rbCorrenteTrans.setText("CC");
+
+        buttonGroup2.add(rbPoupancaTrans);
+        rbPoupancaTrans.setText("CP");
+
+        jLabel3.setText("Destino:");
+
+        jLabel4.setText("Valor:");
+
+        jLabel5.setText("Valor:");
+
+        jLabel6.setText("Valor:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtNumConta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtNumConta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel1)))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbPoupanca)
+                                    .addComponent(rbCorrente))
+                                .addGap(168, 168, 168)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel4))
+                                    .addComponent(txtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(59, 59, 59)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSacar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSaque, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbCorrente)
-                                .addGap(31, 31, 31)
-                                .addComponent(rbPoupanca))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(btnCriar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnProcurar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 28, Short.MAX_VALUE)
-                .addComponent(lblDadosConta, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                                .addGap(24, 24, 24)
+                                .addComponent(btnCriar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rbCorrenteTrans)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbPoupancaTrans))
+                            .addComponent(btnTransferir)
+                            .addComponent(txtValorTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)))
+                    .addComponent(lblDadosConta, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbCorrente)
-                    .addComponent(rbPoupanca))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtContaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbCorrenteTrans)
+                            .addComponent(rbPoupancaTrans)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNumConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rbCorrente))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rbPoupanca)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDepositar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSacar)))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCriar)
-                    .addComponent(btnProcurar)
-                    .addComponent(btnExcluir))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtValorTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTransferir))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnExcluir)
+                        .addComponent(btnProcurar)
+                        .addComponent(btnCriar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDadosConta)
-                .addGap(130, 130, 130))
+                .addGap(137, 137, 137))
         );
 
         pack();
@@ -159,28 +260,31 @@ public class Principal extends javax.swing.JFrame {
         numeroConta = Integer.parseInt(txtNumConta.getText());
         saldo = Double.parseDouble(txtSaldo.getText());
         
+        lblDadosConta.setText("");
+        
         if(rbCorrente.isSelected()){
             cc = new ContaCorrente(numeroConta, saldo);
             if(banco.inserir(cc))
                 lblDadosConta.setText("Conta criada com sucesso!");
             else
-                lblDadosConta.setText("Falha ao criar a conta!");
+                lblDadosConta.setText("Falha ao criar a conta! Conta já existe ou número de contas excedido!");
         } 
         else{
             cp = new ContaPoupanca(numeroConta, saldo);
             if(banco.inserir(cp))
                 lblDadosConta.setText("Conta criada com sucesso!");
             else
-                lblDadosConta.setText("Falha ao criar a conta!");
+                lblDadosConta.setText("Falha ao criar a conta! Conta já existe ou número de contas excedido!");
         }
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
-        
         numeroConta = Integer.parseInt(txtNumConta.getText());
         String dados = "";
         String dadosNumConta = "";
-        String dadosSaldo = "";        
+        String dadosSaldo = "";    
+        
+        lblDadosConta.setText("");
         
         if(rbCorrente.isSelected()){
             cc = banco.procurarContaCorrente(numeroConta);
@@ -209,8 +313,98 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProcurarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        numeroConta = Integer.parseInt(txtNumConta.getText());
+        
+        lblDadosConta.setText("");
+        
+        if(rbCorrente.isSelected()){
+            cc = new ContaCorrente(numeroConta, 0);
+            banco.remover(cc);
+            lblDadosConta.setText("Conta corrente nº" + cc.getNumConta() + " excluida!");
+        } 
+        else{
+            cp = new ContaPoupanca(numeroConta,0);
+            banco.remover(cp);
+            lblDadosConta.setText("Conta poupança nº" + cc.getNumConta() + " excluida!");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
+        deposito = Double.parseDouble(txtDeposito.getText());
+        numeroConta = Integer.parseInt(txtNumConta.getText());
+        saldo = Double.parseDouble(txtSaldo.getText());
+        int posicao;
+        
+        if(rbCorrente.isSelected()){
+            cc = new ContaCorrente(numeroConta, saldo);
+            posicao = banco.procurarPosicaoConta(cc);
+            banco.cc[posicao].depositar(deposito);
+        } 
+        else{
+            cp = new ContaPoupanca(numeroConta, saldo);
+            posicao = banco.procurarPosicaoConta(cp);
+            banco.cp[posicao].depositar(deposito);
+        }
+    }//GEN-LAST:event_btnDepositarActionPerformed
+
+    private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
+        saque = Double.parseDouble(txtSaque.getText());
+        numeroConta = Integer.parseInt(txtNumConta.getText());
+        
+        int posicao;
+        
+        if(rbCorrente.isSelected()){
+            cc = new ContaCorrente(numeroConta, saldo);
+            posicao = banco.procurarPosicaoConta(cc);
+            banco.cc[posicao].sacar(saque);
+        } 
+        else{
+            cp = new ContaPoupanca(numeroConta, saldo);
+            posicao = banco.procurarPosicaoConta(cp);
+            banco.cp[posicao].sacar(saque);
+        }
+    }//GEN-LAST:event_btnSacarActionPerformed
+
+    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
+        transferir = Double.parseDouble(txtValorTransferir.getText());
+        numeroConta = Integer.parseInt(txtNumConta.getText());
+        numeroContaDestino = Integer.parseInt(txtContaDestino.getText());
+        saldo = 0;
+        
+        int posicao, posicaoDestino;
+        
+        if(rbCorrente.isSelected()){
+            cc = new ContaCorrente(numeroConta, saldo);
+            posicao = banco.procurarPosicaoConta(cc);
+            
+            if(rbCorrenteTrans.isSelected()){
+                cc = new ContaCorrente(numeroContaDestino, saldo);
+                posicaoDestino = banco.procurarPosicaoConta(cc); 
+                banco.cc[posicao].transferir(transferir, banco.cc[posicaoDestino]);
+            }
+            else{
+                cp = new ContaPoupanca(numeroContaDestino, saldo);
+                posicaoDestino = banco.procurarPosicaoConta(cp); 
+                banco.cc[posicao].transferir(transferir, banco.cp[posicaoDestino]);
+                
+            }
+        } 
+        else{
+            cp = new ContaPoupanca(numeroConta, saldo);
+            posicao = banco.procurarPosicaoConta(cp);
+            
+            if(rbCorrenteTrans.isSelected()){
+                cc = new ContaCorrente(numeroContaDestino, saldo);
+                posicaoDestino = banco.procurarPosicaoConta(cc);
+                banco.cp[posicao].transferir(transferir, banco.cc[posicaoDestino]);
+            }
+            else{
+                cp = new ContaPoupanca(numeroContaDestino, saldo);
+                posicaoDestino = banco.procurarPosicaoConta(cp); 
+                banco.cp[posicao].transferir(transferir, banco.cp[posicaoDestino]);
+            }
+        }
+    }//GEN-LAST:event_btnTransferirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,15 +444,29 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCriar;
+    private javax.swing.JButton btnDepositar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnProcurar;
+    private javax.swing.JButton btnSacar;
+    private javax.swing.JButton btnTransferir;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblDadosConta;
     private javax.swing.JRadioButton rbCorrente;
+    private javax.swing.JRadioButton rbCorrenteTrans;
     private javax.swing.JRadioButton rbPoupanca;
+    private javax.swing.JRadioButton rbPoupancaTrans;
+    private javax.swing.JTextField txtContaDestino;
+    private javax.swing.JTextField txtDeposito;
     private javax.swing.JTextField txtNumConta;
     private javax.swing.JTextField txtSaldo;
+    private javax.swing.JTextField txtSaque;
+    private javax.swing.JTextField txtValorTransferir;
     // End of variables declaration//GEN-END:variables
 }

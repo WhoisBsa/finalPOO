@@ -36,7 +36,7 @@ public abstract class ContaBancaria {
     
     public abstract void depositar(Double valor);
     
-    public abstract void transferirCorrente(Double valor, ContaCorrente cc);
+    public abstract void transferir(Double valor, ContaCorrente cc);
     
-    public abstract void transferirPoupanca(Double valor, ContaPoupanca cp);
+    public abstract void transferir(Double valor, ContaPoupanca cp);
 }

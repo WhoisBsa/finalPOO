@@ -44,13 +44,13 @@ public class ContaCorrente extends ContaBancaria{
     }
     
     @Override
-    public void transferirCorrente(Double valor, ContaCorrente cc) {
+    public void transferir(Double valor, ContaCorrente cc) {
         this.sacar(valor);
         cc.depositar(valor);
     }
 
     @Override
-    public void transferirPoupanca(Double valor, ContaPoupanca cp) {
+    public void transferir(Double valor, ContaPoupanca cp) {
         this.sacar(valor);
         cp.depositar(valor);
     }
