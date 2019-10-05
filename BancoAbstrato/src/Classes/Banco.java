@@ -15,6 +15,7 @@ public class Banco {
             }
     }
      
+    
     public boolean inserir(ContaCorrente contaCorrente){
         int posicao = procurarPosicaoConta(contaCorrente);
         
@@ -37,18 +38,66 @@ public class Banco {
         }
     }
     
-    public void procurarConta(int numConta){
+    
+    public ContaCorrente procurarContaCorrente(int numConta){
         for(ContaCorrente u : this.cc){
             if(numConta == u.getNumConta()){
-                System.out.println("corrente: " + u.getNumConta() + " saldo: " + u.getSaldo());
+                return u;
             }
         }
+        return new ContaCorrente(-1,0);
     }
+    
     
     public int procurarPosicaoConta(ContaCorrente contaCorrente){
         int i = 0;
         for(ContaCorrente u : this.cc){
             if(u.getNumConta() == contaCorrente.getNumConta()){
+                return i;
+            }
+            i++;
+        }
+        return i; //Se == 10, não encontrou.
+    }
+    
+    
+    public boolean inserir(ContaPoupanca contaPoupanca){
+    int posicao = procurarPosicaoConta(contaPoupanca);
+    
+    if(posicao == this.cp.length){
+        for(int i = 0; i < this.cp.length; i++){
+            if(this.cp[i].getNumConta() == -1){
+                this.cp[i] = contaPoupanca;
+                return true;
+            }
+        }
+    }
+    return false;
+    }
+
+
+    public void remover(ContaPoupanca contaPoupanca){
+        int posicao = procurarPosicaoConta(contaPoupanca);
+        if(posicao != this.cp.length){
+            this.cp[posicao] = new ContaPoupanca(-1,0);
+        }
+    }
+
+
+    public ContaPoupanca procurarContaPoupanca(int numConta){
+        for(ContaPoupanca u : this.cp){
+            if(numConta == u.getNumConta()){
+                return u;
+            }
+        }
+        return new ContaPoupanca(-1, 0);
+    }
+
+
+    public int procurarPosicaoConta(ContaPoupanca contaPoupanca){
+        int i = 0;
+        for(ContaPoupanca u : this.cp){
+            if(u.getNumConta() == contaPoupanca.getNumConta()){
                 return i;
             }
             i++;
