@@ -2,23 +2,23 @@
 package Classes;
 
 public abstract class ContaBancaria {
-    protected String numConta;
+    protected int numConta;
     protected Double saldo;
     
     public ContaBancaria(){
         
     }
     
-    public ContaBancaria(String numConta, double saldo){
+    public ContaBancaria(int numConta, double saldo){
         this.numConta = numConta;
         this.saldo = saldo;
     }
 
-    public String getNumConta() {
+    public int getNumConta() {
         return numConta;
     }
 
-    public void setNumConta(String numConta) {
+    public void setNumConta(int numConta) {
         this.numConta = numConta;
     }
 
@@ -30,13 +30,7 @@ public abstract class ContaBancaria {
         this.saldo = saldo;
     }
     
-    public String mostrarDados(){
-        String dados;
-        
-        dados = "Número da conta: " + this.getNumConta() + "\n Saldo da conta: " + this.getSaldo();
-        
-        return dados;
-    }
+    public abstract String mostrarDados();
     
     public abstract void sacar(Double valor);
     

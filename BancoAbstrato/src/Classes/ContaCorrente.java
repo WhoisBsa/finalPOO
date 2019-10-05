@@ -10,7 +10,7 @@ public class ContaCorrente extends ContaBancaria{
         
     }
     
-    public ContaCorrente(String numConta, double saldo){
+    public ContaCorrente(int numConta, double saldo){
         super(numConta, saldo);
     }
 
@@ -53,5 +53,14 @@ public class ContaCorrente extends ContaBancaria{
     public void transferirPoupanca(Double valor, ContaPoupanca cp) {
         this.sacar(valor);
         cp.depositar(valor);
+    }
+
+    @Override
+    public String mostrarDados() {
+        String dados;
+        
+        dados = "Número da conta corrente: " + this.getNumConta() + "\n Saldo da conta: " + this.getSaldo();
+        
+        return dados;
     }
 }

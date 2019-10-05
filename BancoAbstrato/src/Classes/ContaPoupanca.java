@@ -8,7 +8,7 @@ public class ContaPoupanca extends ContaBancaria{
         
     }
     
-    public ContaPoupanca(String numConta, double saldo){
+    public ContaPoupanca(int numConta, double saldo){
         super(numConta, saldo);
     }
     
@@ -45,6 +45,15 @@ public class ContaPoupanca extends ContaBancaria{
     public void transferirPoupanca(Double valor, ContaPoupanca cp) {
         this.sacar(valor);
         cp.depositar(valor);
+    }
+
+    @Override
+    public String mostrarDados() {
+        String dados;
+        
+        dados = "Número da conta poupança: " + this.getNumConta() + "\n Saldo da conta: " + this.getSaldo();
+        
+        return dados;
     }
     
 }

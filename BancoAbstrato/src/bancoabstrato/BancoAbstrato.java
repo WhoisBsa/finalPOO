@@ -8,8 +8,53 @@ import Classes.ContaPoupanca;
 public class BancoAbstrato {
 
     public static void main(String[] args) {
+        Banco banco = new Banco();
         
-     
+       // banco.cc[0] = new ContaCorrente("aaaaa", 12);
+        
+        
+        ContaCorrente ccP = new ContaCorrente(3, 100.0);
+        
+        ContaCorrente cc = new ContaCorrente(0, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(1, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(2, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(3, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(4, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(5, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(6, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(7, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(8, 100.0);
+        banco.inserir(cc);
+        cc = new ContaCorrente(9, 100.0);
+        banco.inserir(cc);
+        
+        
+
+      //  System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+//        System.out.println(banco.inserir(cc, "20426-5", 100.0));
+        
+        banco.remover(ccP);
+        System.out.println(banco.cc[2].getNumConta());
+        System.out.println(banco.cc[3].getNumConta());
+        System.out.println(banco.cc[4].getNumConta());
+        banco.procurarConta(7);
+       
+        
+        
         
         
         
