@@ -158,7 +158,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
+                                        .addGap(1, 1, 1)
                                         .addComponent(jLabel1)))
                                 .addGap(50, 50, 50)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +211,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(rbCorrenteTrans)
                             .addComponent(rbPoupancaTrans)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -257,25 +258,31 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
-        numeroConta = Integer.parseInt(txtNumConta.getText());
-        saldo = Double.parseDouble(txtSaldo.getText());
-        
-        lblDadosConta.setText("");
-        
-        if(rbCorrente.isSelected()){
-            cc = new ContaCorrente(numeroConta, saldo);
-            if(banco.inserir(cc))
-                lblDadosConta.setText("Conta criada com sucesso!");
-            else
-                lblDadosConta.setText("Falha ao criar a conta! Conta já existe ou número de contas excedido!");
-        } 
-        else{
-            cp = new ContaPoupanca(numeroConta, saldo);
-            if(banco.inserir(cp))
-                lblDadosConta.setText("Conta criada com sucesso!");
-            else
-                lblDadosConta.setText("Falha ao criar a conta! Conta já existe ou número de contas excedido!");
+              
+        if(txtSaldo.getText().equalsIgnoreCase("") || txtNumConta.getText().equalsIgnoreCase("")){
+            lblDadosConta.setText("Insira os dados corretamente!");
         }
+        else{
+            numeroConta = Integer.parseInt(txtNumConta.getText());
+            saldo = Double.parseDouble(txtSaldo.getText());
+            
+            if(rbCorrente.isSelected()){
+            cc = new ContaCorrente(numeroConta, saldo);
+                if(banco.inserir(cc))
+                    lblDadosConta.setText("Conta criada com sucesso!");
+                else
+                    lblDadosConta.setText("Falha ao criar a conta! Conta já existe ou número de contas excedido!");
+                } 
+            else{
+                cp = new ContaPoupanca(numeroConta, saldo);
+                if(banco.inserir(cp))
+                    lblDadosConta.setText("Conta criada com sucesso!");
+                else
+                    lblDadosConta.setText("Falha ao criar a conta! Conta já existe ou número de contas excedido!");
+            }
+        }
+        
+        
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
@@ -294,7 +301,7 @@ public class Principal extends javax.swing.JFrame {
             else{
                 dadosNumConta = String.valueOf(cc.getNumConta());
                 dadosSaldo = String.valueOf(cc.getSaldo());
-                dados = "CONTA CORRENTE\n" + " Número: " + dadosNumConta + "\n Saldo: R$" + dadosSaldo + "";
+                dados = "CONTA CORRENTE:\n" + " Número: " + dadosNumConta + "\n Saldo: R$" + dadosSaldo + "";
                 lblDadosConta.setText(dados);
             } 
         } 
@@ -306,7 +313,7 @@ public class Principal extends javax.swing.JFrame {
             else{
                 dadosNumConta = String.valueOf(cp.getNumConta());
                 dadosSaldo = String.valueOf(cp.getSaldo());
-                dados = "CONTA POUPANÇA\n" + " Número: " + dadosNumConta + "\n Saldo: R$" + dadosSaldo + "";
+                dados = "CONTA POUPANÇA:\n" + " Número: " + dadosNumConta + "\n Saldo: R$" + dadosSaldo + "";
                 lblDadosConta.setText(dados);
             }
         }
@@ -330,20 +337,39 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
-        deposito = Double.parseDouble(txtDeposito.getText());
-        numeroConta = Integer.parseInt(txtNumConta.getText());
-        saldo = Double.parseDouble(txtSaldo.getText());
+        if(txtDeposito.getText().equalsIgnoreCase("") || txtNumConta.getText().equalsIgnoreCase("") || txtSaldo.getText().equalsIgnoreCase("")){
+            lblDadosConta.setText("Preencha os campos corretamente!");
+            return;
+        }
+        else{
+            deposito = Double.parseDouble(txtDeposito.getText());
+            numeroConta = Integer.parseInt(txtNumConta.getText());
+            saldo = Double.parseDouble(txtSaldo.getText());
+        }
+
         int posicao;
         
-        if(rbCorrente.isSelected()){
-            cc = new ContaCorrente(numeroConta, saldo);
-            posicao = banco.procurarPosicaoConta(cc);
-            banco.cc[posicao].depositar(deposito);
-        } 
+        
+        if(txtDeposito.getText().equalsIgnoreCase("0")){
+                lblDadosConta.setText("Impossível depósito de R$0,00!");
+        }
         else{
-            cp = new ContaPoupanca(numeroConta, saldo);
-            posicao = banco.procurarPosicaoConta(cp);
-            banco.cp[posicao].depositar(deposito);
+            if(rbCorrente.isSelected()){        
+                cc = new ContaCorrente(numeroConta, saldo);
+                posicao = banco.procurarPosicaoConta(cc);
+                banco.cc[posicao].depositar(deposito);
+                txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
+                lblDadosConta.setText("");
+                txtDeposito.setText("");
+            } 
+            else{
+                cp = new ContaPoupanca(numeroConta, saldo);
+                posicao = banco.procurarPosicaoConta(cp);
+                banco.cp[posicao].depositar(deposito);
+                txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
+                lblDadosConta.setText("");
+                txtDeposito.setText("");
+            }
         }
     }//GEN-LAST:event_btnDepositarActionPerformed
 
@@ -357,18 +383,34 @@ public class Principal extends javax.swing.JFrame {
             cc = new ContaCorrente(numeroConta, saldo);
             posicao = banco.procurarPosicaoConta(cc);
             banco.cc[posicao].sacar(saque);
+            txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
+            lblDadosConta.setText("");
+            txtSaque.setText("");
         } 
         else{
             cp = new ContaPoupanca(numeroConta, saldo);
             posicao = banco.procurarPosicaoConta(cp);
             banco.cp[posicao].sacar(saque);
+            txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
+            lblDadosConta.setText("");
+            txtSaque.setText("");
         }
     }//GEN-LAST:event_btnSacarActionPerformed
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
-        transferir = Double.parseDouble(txtValorTransferir.getText());
+        if(txtValorTransferir.getText().equalsIgnoreCase("") || txtContaDestino.getText().equalsIgnoreCase("") || txtNumConta.getText().equalsIgnoreCase("")){
+            lblDadosConta.setText("Preencha os campos corretamente!");
+            return;
+        }
+            
+        else{
+            transferir = Double.parseDouble(txtValorTransferir.getText());
+            numeroContaDestino = Integer.parseInt(txtContaDestino.getText());
+        }
+            
+        
         numeroConta = Integer.parseInt(txtNumConta.getText());
-        numeroContaDestino = Integer.parseInt(txtContaDestino.getText());
+        
         saldo = 0;
         
         int posicao, posicaoDestino;
@@ -379,14 +421,23 @@ public class Principal extends javax.swing.JFrame {
             
             if(rbCorrenteTrans.isSelected()){
                 cc = new ContaCorrente(numeroContaDestino, saldo);
-                posicaoDestino = banco.procurarPosicaoConta(cc); 
-                banco.cc[posicao].transferir(transferir, banco.cc[posicaoDestino]);
+                posicaoDestino = banco.procurarPosicaoConta(cc);
+                if(posicaoDestino != this.banco.cc.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
+                    banco.cc[posicao].transferir(transferir, banco.cc[posicaoDestino]);
+                    lblDadosConta.setText("Transferido!");
+                }
+                else
+                    lblDadosConta.setText("Conta de destino não existe!");
             }
             else{
                 cp = new ContaPoupanca(numeroContaDestino, saldo);
                 posicaoDestino = banco.procurarPosicaoConta(cp); 
-                banco.cc[posicao].transferir(transferir, banco.cp[posicaoDestino]);
-                
+                if(posicaoDestino != this.banco.cp.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
+                    banco.cc[posicao].transferir(transferir, banco.cp[posicaoDestino]);
+                    lblDadosConta.setText("Transferido!");
+                }  
+                else
+                    lblDadosConta.setText("Conta de destino não existe!");  
             }
         } 
         else{
@@ -396,12 +447,27 @@ public class Principal extends javax.swing.JFrame {
             if(rbCorrenteTrans.isSelected()){
                 cc = new ContaCorrente(numeroContaDestino, saldo);
                 posicaoDestino = banco.procurarPosicaoConta(cc);
-                banco.cp[posicao].transferir(transferir, banco.cc[posicaoDestino]);
+                
+                if(posicaoDestino != this.banco.cc.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
+                    banco.cp[posicao].transferir(transferir, banco.cc[posicaoDestino]);
+                    lblDadosConta.setText("Transferido!");
+                }
+                else{
+                    lblDadosConta.setText("Conta de destino não existe!");
+                }
+                
             }
             else{
                 cp = new ContaPoupanca(numeroContaDestino, saldo);
                 posicaoDestino = banco.procurarPosicaoConta(cp); 
-                banco.cp[posicao].transferir(transferir, banco.cp[posicaoDestino]);
+                if(posicaoDestino != this.banco.cp.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
+                    banco.cp[posicao].transferir(transferir, banco.cp[posicaoDestino]);
+                    lblDadosConta.setText("Transferido!");
+                }
+                else{
+                    lblDadosConta.setText("Conta de destino não existe!");
+                }
+                
             }
         }
     }//GEN-LAST:event_btnTransferirActionPerformed
