@@ -15,18 +15,16 @@ public class ContaCorrente extends ContaBancaria{
     }
 
     @Override
-    public void sacar(Double saque) {
+    public boolean sacar(Double saque) {
         double totalTaxa;
         totalTaxa = saque * taxaDeOperacao;
           
         if((this.getSaldo() - totalTaxa) >= 0){
             double saldoAtual = this.getSaldo();
             this.setSaldo((saldoAtual - totalTaxa));
+            return true;
         }
-        else{
-            //JOptionPane.showMessageDialog(rootPane, "Saldo insuficiente!");
-            System.out.println("Saldo insuficiente!");
-        }
+        return false;
     }
 
     @Override

@@ -13,15 +13,13 @@ public class ContaPoupanca extends ContaBancaria{
     }
     
     @Override
-    public void sacar(Double saque) {
+    public boolean sacar(Double saque) {
         if((this.getSaldo() - saque) >= limite){
             double saldoAtual = this.getSaldo();
             this.setSaldo((saldoAtual - saque));
+            return true;
         }
-        else{
-            //JOptionPane.showMessageDialog(rootPane, "Saldo insuficiente!");
-            System.out.println("Saldo insuficiente!");
-        }
+        return false;
     }
 
     @Override

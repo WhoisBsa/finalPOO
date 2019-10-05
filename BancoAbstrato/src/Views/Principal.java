@@ -303,6 +303,7 @@ public class Principal extends javax.swing.JFrame {
                 dadosSaldo = String.valueOf(cc.getSaldo());
                 dados = "CONTA CORRENTE:\n" + " Número: " + dadosNumConta + "\n Saldo: R$" + dadosSaldo + "";
                 lblDadosConta.setText(dados);
+                txtSaldo.setText(String.valueOf(cc.getSaldo()));
             } 
         } 
         else{
@@ -315,6 +316,7 @@ public class Principal extends javax.swing.JFrame {
                 dadosSaldo = String.valueOf(cp.getSaldo());
                 dados = "CONTA POUPANÇA:\n" + " Número: " + dadosNumConta + "\n Saldo: R$" + dadosSaldo + "";
                 lblDadosConta.setText(dados);
+                txtSaldo.setText(String.valueOf(cp.getSaldo()));
             }
         }
     }//GEN-LAST:event_btnProcurarActionPerformed
@@ -328,11 +330,15 @@ public class Principal extends javax.swing.JFrame {
             cc = new ContaCorrente(numeroConta, 0);
             banco.remover(cc);
             lblDadosConta.setText("Conta corrente nº" + cc.getNumConta() + " excluida!");
+            txtSaldo.setText("");
+            txtNumConta.setText("");
         } 
         else{
             cp = new ContaPoupanca(numeroConta,0);
             banco.remover(cp);
             lblDadosConta.setText("Conta poupança nº" + cc.getNumConta() + " excluida!");
+            txtSaldo.setText("");
+            txtNumConta.setText("");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -359,7 +365,7 @@ public class Principal extends javax.swing.JFrame {
                 posicao = banco.procurarPosicaoConta(cc);
                 banco.cc[posicao].depositar(deposito);
                 txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
-                lblDadosConta.setText("");
+                lblDadosConta.setText("Depositado!");
                 txtDeposito.setText("");
             } 
             else{
@@ -367,33 +373,48 @@ public class Principal extends javax.swing.JFrame {
                 posicao = banco.procurarPosicaoConta(cp);
                 banco.cp[posicao].depositar(deposito);
                 txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
-                lblDadosConta.setText("");
+                lblDadosConta.setText("Depositado!");
                 txtDeposito.setText("");
             }
         }
     }//GEN-LAST:event_btnDepositarActionPerformed
 
     private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
-        saque = Double.parseDouble(txtSaque.getText());
-        numeroConta = Integer.parseInt(txtNumConta.getText());
+        
+        if(txtSaque.getText().equalsIgnoreCase("") || txtNumConta.getText().equalsIgnoreCase("")){
+            lblDadosConta.setText("Insira os dados corretamente!");
+            return;
+        }
+        else{
+            saque = Double.parseDouble(txtSaque.getText());
+            numeroConta = Integer.parseInt(txtNumConta.getText());
+        }
+        
         
         int posicao;
         
         if(rbCorrente.isSelected()){
             cc = new ContaCorrente(numeroConta, saldo);
             posicao = banco.procurarPosicaoConta(cc);
-            banco.cc[posicao].sacar(saque);
-            txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
-            lblDadosConta.setText("");
-            txtSaque.setText("");
+            if(banco.cc[posicao].sacar(saque)){
+                txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
+                lblDadosConta.setText("Saque bem sucedido!");
+                txtSaque.setText("");
+            }
+            else
+                lblDadosConta.setText("Saldo insuficiente!");
+            
         } 
         else{
             cp = new ContaPoupanca(numeroConta, saldo);
             posicao = banco.procurarPosicaoConta(cp);
-            banco.cp[posicao].sacar(saque);
-            txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
-            lblDadosConta.setText("");
-            txtSaque.setText("");
+            if(banco.cp[posicao].sacar(saque)){
+                txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
+                lblDadosConta.setText("Saque bem sucedido!");
+                txtSaque.setText("");
+            }
+            else
+               lblDadosConta.setText("Saldo insuficiente!"); 
         }
     }//GEN-LAST:event_btnSacarActionPerformed
 
@@ -425,6 +446,7 @@ public class Principal extends javax.swing.JFrame {
                 if(posicaoDestino != this.banco.cc.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
                     banco.cc[posicao].transferir(transferir, banco.cc[posicaoDestino]);
                     lblDadosConta.setText("Transferido!");
+                    txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
                 }
                 else
                     lblDadosConta.setText("Conta de destino não existe!");
@@ -435,10 +457,13 @@ public class Principal extends javax.swing.JFrame {
                 if(posicaoDestino != this.banco.cp.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
                     banco.cc[posicao].transferir(transferir, banco.cp[posicaoDestino]);
                     lblDadosConta.setText("Transferido!");
+                    txtSaldo.setText(String.valueOf(banco.cc[posicao].getSaldo()));
                 }  
                 else
                     lblDadosConta.setText("Conta de destino não existe!");  
             }
+            
+            
         } 
         else{
             cp = new ContaPoupanca(numeroConta, saldo);
@@ -451,6 +476,7 @@ public class Principal extends javax.swing.JFrame {
                 if(posicaoDestino != this.banco.cc.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
                     banco.cp[posicao].transferir(transferir, banco.cc[posicaoDestino]);
                     lblDadosConta.setText("Transferido!");
+                    txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
                 }
                 else{
                     lblDadosConta.setText("Conta de destino não existe!");
@@ -463,6 +489,7 @@ public class Principal extends javax.swing.JFrame {
                 if(posicaoDestino != this.banco.cp.length && !(txtContaDestino.getText().equalsIgnoreCase("")) && !(txtValorTransferir.getText().equalsIgnoreCase(""))){
                     banco.cp[posicao].transferir(transferir, banco.cp[posicaoDestino]);
                     lblDadosConta.setText("Transferido!");
+                    txtSaldo.setText(String.valueOf(banco.cp[posicao].getSaldo()));
                 }
                 else{
                     lblDadosConta.setText("Conta de destino não existe!");

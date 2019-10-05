@@ -32,7 +32,7 @@ public abstract class ContaBancaria {
     
     public abstract String mostrarDados();
     
-    public abstract void sacar(Double valor);
+    public abstract boolean sacar(Double valor);
     
     public abstract void depositar(Double valor);
     
