@@ -4,14 +4,16 @@ public abstract class Animal {
     private double peso;
     private String cor;
     private String tamanho;
-    
-    public void comer(){
-        
+
+    public Animal(double peso, String cor, String tamanho) {
+        this.peso = peso;
+        this.cor = cor;
+        this.tamanho = tamanho;
     }
     
-    public void dormir(){
-        
-    }
+    public abstract void comer();
+    
+    public abstract void dormir();
 
     public double getPeso() {
         return peso;
