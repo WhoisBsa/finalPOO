@@ -18,12 +18,11 @@ public class ClientesVisualizar extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    String sql = "select * from cliente";
-        
-    
 
     public ClientesVisualizar() {
         initComponents();
+        String sql = "select * from cliente";
+        
         conexao = DBconn.conectar();
         
         
@@ -54,6 +53,7 @@ public class ClientesVisualizar extends javax.swing.JFrame {
             System.out.println("Erro: " + e);
         }
         
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -75,7 +75,7 @@ public class ClientesVisualizar extends javax.swing.JFrame {
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,6 +125,11 @@ public class ClientesVisualizar extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Id:");
 
@@ -143,7 +148,7 @@ public class ClientesVisualizar extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +203,7 @@ public class ClientesVisualizar extends javax.swing.JFrame {
                     .addComponent(btnAnterior)
                     .addComponent(btnProximo)
                     .addComponent(btnBuscar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -251,6 +256,48 @@ public class ClientesVisualizar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        id = Integer.parseInt(txtBuscar.getText());
+        String sql = "select * from cliente where id = ?";
+        
+        conexao = DBconn.conectar();
+        
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, id);
+            
+            rs = pst.executeQuery();
+            rs.next();
+            
+            id = Integer.parseInt(rs.getString("id"));
+            nome = rs.getString("nome");
+            idade = Integer.parseInt(rs.getString("idade"));
+            cpf = rs.getString("cpf");
+            endereco = rs.getString("endereco");
+            telefone = rs.getString("telefone");
+            
+//            System.out.println(id);
+            
+            lblId.setText(String.valueOf(id));
+            lblNome.setText(nome);
+            lblIdade.setText(String.valueOf(idade));
+            lblCPF.setText(cpf);
+            lblEndereco.setText(endereco);
+            lblTelefone.setText(telefone);
+            
+            sql = "select * from cliente";
+            pst = conexao.prepareStatement(sql);
+            
+            rs = pst.executeQuery();
+            rs.next();
+        
+        } 
+        catch (Exception e) {
+            System.out.println("Erro: " + e);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -294,12 +341,12 @@ public class ClientesVisualizar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTelefone;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
