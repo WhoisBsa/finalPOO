@@ -93,6 +93,11 @@ public class ClientesCompleto extends javax.swing.JFrame {
         });
 
         btnInserir.setText("Inserir");
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,6 +252,44 @@ public class ClientesCompleto extends javax.swing.JFrame {
             System.out.println("Erro: " + e);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        String sql = "insert into cliente (nome, idade, cpf, endereco, telefone) values (?, ?, ?, ?, ?)";
+
+        conexao = DBconn.conectar();
+
+        try {
+            nome = txtNome.getText();
+            idade = Integer.parseInt(txtIdade.getText());
+            cpf = txtCPF.getText();
+            endereco = txtEndereco.getText();
+            telefone = txtTelefone.getText();
+            
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, nome);
+            pst.setInt(2, idade);
+            pst.setString(3, cpf);
+            pst.setString(4, endereco);
+            pst.setString(5, telefone);
+
+            pst.executeUpdate();
+//            rs.next();
+
+            
+
+//            lblId.setText(String.valueOf(id));
+//            txtNome.setText(nome);
+//            txtIdade.setText(String.valueOf(idade));
+//            txtCPF.setText(cpf);
+//            txtEndereco.setText(endereco);
+//            txtTelefone.setText(telefone);
+           
+
+        }
+        catch (Exception e) {
+            System.out.println("Erro: " + e);
+        }
+    }//GEN-LAST:event_btnInserirActionPerformed
 
 
     
