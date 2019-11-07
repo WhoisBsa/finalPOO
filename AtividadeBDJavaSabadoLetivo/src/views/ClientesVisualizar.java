@@ -3,7 +3,9 @@ package views;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import sql.DBconn;
 
 public class ClientesVisualizar extends javax.swing.JFrame {
@@ -49,8 +51,9 @@ public class ClientesVisualizar extends javax.swing.JFrame {
             lblTelefone.setText(telefone);
 
         } 
-        catch (Exception e) {
-            System.out.println("Erro: " + e);
+        catch (SQLException e) {
+//            System.out.println("Erro: " + e);
+            JOptionPane.showMessageDialog(rootPane, e);
         }
         
         
@@ -77,6 +80,7 @@ public class ClientesVisualizar extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,53 +137,77 @@ public class ClientesVisualizar extends javax.swing.JFrame {
 
         jLabel7.setText("Id:");
 
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblId)
-                            .addComponent(lblTelefone)
-                            .addComponent(lblEndereco)
-                            .addComponent(lblCPF)
-                            .addComponent(lblNome)
-                            .addComponent(lblIdade))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTelefone)
+                                    .addComponent(lblEndereco)
+                                    .addComponent(lblCPF)
+                                    .addComponent(lblIdade))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnLogin)
+                                .addGap(28, 28, 28))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblId)
+                                    .addComponent(lblNome))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBuscar)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(19, 19, 19))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                        .addGap(7, 7, 7)
                         .addComponent(btnAnterior)
                         .addGap(18, 18, 18)
                         .addComponent(btnProximo)
-                        .addGap(34, 34, 34))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblId))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblNome))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblId))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(lblNome)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -196,15 +224,12 @@ public class ClientesVisualizar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(lblTelefone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAnterior)
                     .addComponent(btnProximo)
-                    .addComponent(btnBuscar)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                    .addComponent(btnLogin))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -228,8 +253,8 @@ public class ClientesVisualizar extends javax.swing.JFrame {
             lblEndereco.setText(endereco);
             lblTelefone.setText(telefone);
         }
-        catch (Exception e) {
-        
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -251,8 +276,8 @@ public class ClientesVisualizar extends javax.swing.JFrame {
             lblEndereco.setText(endereco);
             lblTelefone.setText(telefone);
         }
-        catch (Exception e) {
-        
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -293,10 +318,18 @@ public class ClientesVisualizar extends javax.swing.JFrame {
             rs.next();
         
         } 
-        catch (Exception e) {
-            System.out.println("Erro: " + e);
+        catch (SQLException e) {
+//            System.out.println("Erro: " + e);
+            JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -333,6 +366,7 @@ public class ClientesVisualizar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnProximo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

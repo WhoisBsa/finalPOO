@@ -29,7 +29,6 @@ public class Usuario {
             pst.setString(1, login);
             pst.setString(2, senha);
             
-//            System.out.println("flag");
             rs = pst.executeQuery();
             
             while(rs.next()){
@@ -37,12 +36,10 @@ public class Usuario {
                 senhaAux = rs.getString("senha");
                 
                 if((loginAux.equals(login) && (senhaAux.equals(senha)))){
-                    System.out.println("Usuário: " + loginAux + " Logado com sucesso com a senha: " + senhaAux);
+//                    System.out.println("Usuário: " + loginAux + " Logado com sucesso com a senha: " + senhaAux);
                     return true;
                 }
             }
-            
-            System.out.println("Nenhum usuário encontrado!");
             return false;
             
             

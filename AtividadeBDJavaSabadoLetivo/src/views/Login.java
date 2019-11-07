@@ -4,6 +4,7 @@ package views;
 import classes.Cliente;
 import classes.Usuario;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     Usuario usuario = new Usuario();
@@ -106,7 +107,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
         }
         else{
-            System.out.println("falha");
+            JOptionPane.showMessageDialog(rootPane, "Login ou senha incorretos!");
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
