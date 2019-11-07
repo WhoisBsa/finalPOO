@@ -1,4 +1,3 @@
-
 package views;
 
 import java.sql.Connection;
@@ -214,39 +213,43 @@ public class ClientesCompleto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        id = Integer.parseInt(txtBuscar.getText());
-        String sql = "select * from cliente where id = ?";
-
-        conexao = DBconn.conectar();
-
-        try {
-            pst = conexao.prepareStatement(sql);
-            pst.setInt(1, id);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
-                id = Integer.parseInt(rs.getString("id"));
-                nome = rs.getString("nome");
-                idade = Integer.parseInt(rs.getString("idade"));
-                cpf = rs.getString("cpf");
-                endereco = rs.getString("endereco");
-                telefone = rs.getString("telefone");
-
-                lblId.setText(String.valueOf(id));
-                txtNome.setText(nome);
-                txtIdade.setText(String.valueOf(idade));
-                txtCPF.setText(cpf);
-                txtEndereco.setText(endereco);
-                txtTelefone.setText(telefone);
-            }
-            else{
-                JOptionPane.showMessageDialog(rootPane, "Nenhum item com este id!");
-            }
-            
+        if(txtBuscar.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Você não informou nenhum ID!");
         }
-        catch (SQLException e) {
-//            System.out.println("Erro: " + e);
-            JOptionPane.showMessageDialog(rootPane, e);
+        else{
+            id = Integer.parseInt(txtBuscar.getText());
+            String sql = "select * from cliente where id = ?";
+
+            conexao = DBconn.conectar();
+
+            try {
+                pst = conexao.prepareStatement(sql);
+                pst.setInt(1, id);
+
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    id = Integer.parseInt(rs.getString("id"));
+                    nome = rs.getString("nome");
+                    idade = Integer.parseInt(rs.getString("idade"));
+                    cpf = rs.getString("cpf");
+                    endereco = rs.getString("endereco");
+                    telefone = rs.getString("telefone");
+
+                    lblId.setText(String.valueOf(id));
+                    txtNome.setText(nome);
+                    txtIdade.setText(String.valueOf(idade));
+                    txtCPF.setText(cpf);
+                    txtEndereco.setText(endereco);
+                    txtTelefone.setText(telefone);
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Nenhum item com este id!");
+                }
+
+            }
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(rootPane, e);
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -267,7 +270,6 @@ public class ClientesCompleto extends javax.swing.JFrame {
 
         }
         catch (SQLException e) {
-//            System.out.println("Erro: " + e);
             JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -277,27 +279,36 @@ public class ClientesCompleto extends javax.swing.JFrame {
 
         conexao = DBconn.conectar();
 
-        try {
-            nome = txtNome.getText();
-            idade = Integer.parseInt(txtIdade.getText());
-            cpf = txtCPF.getText();
-            endereco = txtEndereco.getText();
-            telefone = txtTelefone.getText();
-            
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, nome);
-            pst.setInt(2, idade);
-            pst.setString(3, cpf);
-            pst.setString(4, endereco);
-            pst.setString(5, telefone);
-
-            pst.executeUpdate();
-
+        if(txtNome.getText().isEmpty()
+                || txtIdade.getText().isEmpty()
+                || txtCPF.getText().isEmpty()
+                || txtEndereco.getText().isEmpty()
+                || txtTelefone.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos corretamente!");
         }
-        catch (SQLException e) {
-//            System.out.println("Erro: " + e);
-            JOptionPane.showMessageDialog(rootPane, e);
+        else{
+            try {
+                nome = txtNome.getText();
+                idade = Integer.parseInt(txtIdade.getText());
+                cpf = txtCPF.getText();
+                endereco = txtEndereco.getText();
+                telefone = txtTelefone.getText();
+
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, nome);
+                pst.setInt(2, idade);
+                pst.setString(3, cpf);
+                pst.setString(4, endereco);
+                pst.setString(5, telefone);
+
+                pst.executeUpdate();
+
+            }
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(rootPane, e);
+            }
         }
+        
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
@@ -307,7 +318,34 @@ public class ClientesCompleto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        id = Integer.parseInt(lblId.getText());
+        String sql = "update cliente "
+                + "set nome = ?, idade = ?, cpf = ?, endereco = ?, telefone = ?"
+                + "where id = ?";
+
+        conexao = DBconn.conectar();
+
+        try {         
+            nome = txtNome.getText();
+            idade = Integer.parseInt(txtIdade.getText());
+            cpf = txtCPF.getText();
+            endereco = txtEndereco.getText();
+            telefone = txtTelefone.getText();
+
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, nome);
+            pst.setInt(2, idade);
+            pst.setString(3, cpf);
+            pst.setString(4, endereco);
+            pst.setString(5, telefone);
+            pst.setInt(6, id);
+
+            pst.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

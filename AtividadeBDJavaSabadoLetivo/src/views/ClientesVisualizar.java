@@ -1,4 +1,3 @@
-
 package views;
 
 import java.sql.Connection;
@@ -27,7 +26,6 @@ public class ClientesVisualizar extends javax.swing.JFrame {
         
         conexao = DBconn.conectar();
         
-        
         try {
             pst = conexao.prepareStatement(sql);
             
@@ -41,8 +39,6 @@ public class ClientesVisualizar extends javax.swing.JFrame {
             endereco = rs.getString("endereco");
             telefone = rs.getString("telefone");
             
-//            System.out.println(id);
-            
             lblId.setText(String.valueOf(id));
             lblNome.setText(nome);
             lblIdade.setText(String.valueOf(idade));
@@ -52,7 +48,6 @@ public class ClientesVisualizar extends javax.swing.JFrame {
 
         } 
         catch (SQLException e) {
-//            System.out.println("Erro: " + e);
             JOptionPane.showMessageDialog(rootPane, e);
         }
         
@@ -282,45 +277,50 @@ public class ClientesVisualizar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        id = Integer.parseInt(txtBuscar.getText());
-        String sql = "select * from cliente where id = ?";
-        
-        conexao = DBconn.conectar();
-        
-        
-        try {
-            pst = conexao.prepareStatement(sql);
-            pst.setInt(1, id);
-            
-            rs = pst.executeQuery();
-            rs.next();
-            
-            id = Integer.parseInt(rs.getString("id"));
-            nome = rs.getString("nome");
-            idade = Integer.parseInt(rs.getString("idade"));
-            cpf = rs.getString("cpf");
-            endereco = rs.getString("endereco");
-            telefone = rs.getString("telefone");
-            
-//            System.out.println(id);
-            
-            lblId.setText(String.valueOf(id));
-            lblNome.setText(nome);
-            lblIdade.setText(String.valueOf(idade));
-            lblCPF.setText(cpf);
-            lblEndereco.setText(endereco);
-            lblTelefone.setText(telefone);
-            
-            sql = "select * from cliente";
-            pst = conexao.prepareStatement(sql);
-            
-            rs = pst.executeQuery();
-            rs.next();
-        
-        } 
-        catch (SQLException e) {
-//            System.out.println("Erro: " + e);
-            JOptionPane.showMessageDialog(rootPane, e);
+        if(txtBuscar.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Você não informou nenhum ID!");
+        }
+        else{
+            id = Integer.parseInt(txtBuscar.getText());
+            String sql = "select * from cliente where id = ?";
+
+            conexao = DBconn.conectar();
+
+
+            try {
+                pst = conexao.prepareStatement(sql);
+                pst.setInt(1, id);
+
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    id = Integer.parseInt(rs.getString("id"));
+                    nome = rs.getString("nome");
+                    idade = Integer.parseInt(rs.getString("idade"));
+                    cpf = rs.getString("cpf");
+                    endereco = rs.getString("endereco");
+                    telefone = rs.getString("telefone");
+
+
+                    lblId.setText(String.valueOf(id));
+                    lblNome.setText(nome);
+                    lblIdade.setText(String.valueOf(idade));
+                    lblCPF.setText(cpf);
+                    lblEndereco.setText(endereco);
+                    lblTelefone.setText(telefone);
+
+                    sql = "select * from cliente";
+                    pst = conexao.prepareStatement(sql);
+
+                    rs = pst.executeQuery();
+                    rs.next();
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Nenhum item com este id!");
+                }
+            } 
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(rootPane, e);
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
