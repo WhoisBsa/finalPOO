@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 import models.Pacientes;
+import views.Principal;
 
 /**
  *
@@ -21,9 +22,8 @@ public class MVC_Exercicio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ParseException {
-        Pacientes p = new Pacientes("José", "123123123123", "18/11/1991", 'M');
-        
-        System.out.println(p.idade());
+    public static void main(String[] args) {
+        Principal principal = new Principal();
+        principal.setVisible(true);
     }
 }
