@@ -1,4 +1,3 @@
-
 package views;
 
 import classes.Cliente;
@@ -16,7 +15,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        this.setLocale(null);
+        this.setLocationRelativeTo(null);
     }
     
 

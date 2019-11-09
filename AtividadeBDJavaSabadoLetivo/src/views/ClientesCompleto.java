@@ -22,6 +22,7 @@ public class ClientesCompleto extends javax.swing.JFrame {
     
     public ClientesCompleto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -348,8 +349,6 @@ public class ClientesCompleto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-
-    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
