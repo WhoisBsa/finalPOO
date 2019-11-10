@@ -36,9 +36,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtDataNascimento = new javax.swing.JFormattedTextField();
         txtCpf = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSalvarAlteracoes = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,12 +67,12 @@ public class CadastroPaciente extends javax.swing.JFrame {
         }
         txtCpf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jButton1.setText("Salvar Alterações");
+        btnSalvarAlteracoes.setText("Salvar Alterações");
 
-        jButton2.setText("Salvar");
+        btnSalvar.setText("Salvar");
 
-        jButton3.setForeground(new java.awt.Color(255, 0, 51));
-        jButton3.setText("Excluir");
+        btnExcluir.setForeground(new java.awt.Color(255, 0, 51));
+        btnExcluir.setText("Excluir");
 
         jButton4.setText("Buscar");
 
@@ -104,11 +104,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
                                 .addComponent(txtCpf))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jButton2)
+                        .addComponent(btnSalvar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnSalvarAlteracoes)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
+                        .addComponent(btnExcluir)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,9 +136,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnSalvarAlteracoes)
+                    .addComponent(btnExcluir))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -184,10 +184,10 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvarAlteracoes;
     private javax.swing.JComboBox<String> cmbGenero;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
