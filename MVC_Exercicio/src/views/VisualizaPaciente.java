@@ -5,26 +5,17 @@
  */
 package views;
 
-import controllers.ControllerPacientes;
-
 /**
  *
  * @author hemilio
  */
-public class CadastroPaciente extends javax.swing.JFrame {
+public class VisualizaPaciente extends javax.swing.JFrame {
 
-    private String nome;
-    private String cpf;
-    private String nascimento;
-    private String sexo;
-    
-    
     /**
-     * Creates new form cadastroCliente
+     * Creates new form VisualizaCliente
      */
-    public CadastroPaciente() {
+    public VisualizaPaciente() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +27,10 @@ public class CadastroPaciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
         cmbGenero = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -44,12 +38,23 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtDataNascimento = new javax.swing.JFormattedTextField();
         txtCpf = new javax.swing.JFormattedTextField();
-        btnSalvarAlteracoes = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton4.setText("Buscar");
 
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
 
@@ -75,26 +80,12 @@ public class CadastroPaciente extends javax.swing.JFrame {
         }
         txtCpf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        btnSalvarAlteracoes.setText("Salvar Alterações");
-
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setForeground(new java.awt.Color(255, 0, 51));
-        btnExcluir.setText("Excluir");
-
-        jButton4.setText("Buscar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -114,20 +105,14 @@ public class CadastroPaciente extends javax.swing.JFrame {
                                         .addComponent(jLabel3)
                                         .addComponent(jButton4))
                                     .addGap(36, 36, 36))
-                                .addComponent(txtCpf))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalvarAlteracoes)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExcluir)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,35 +132,14 @@ public class CadastroPaciente extends javax.swing.JFrame {
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnSalvarAlteracoes)
-                    .addComponent(btnExcluir))
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        nome = txtNome.getText();
-        cpf = txtCpf.getText();
-        nascimento = dataParaBanco(txtDataNascimento.getText());
-        sexo = (String) cmbGenero.getSelectedItem();
-        
-        ControllerPacientes cp = new ControllerPacientes(nome, cpf,nascimento, sexo);
-        cp.salvar();
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
-    
-    private String dataParaBanco(String d){
-        String data = d; 
-        String[] s = data.split("/"); 
-        String novaData = s[2]+"/"+s[1]+"/"+s[0];
-        
-        return novaData;
-    }
     /**
      * @param args the command line arguments
      */
@@ -193,37 +157,34 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroPaciente().setVisible(true);
+                new VisualizaPaciente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvarAlteracoes;
     private javax.swing.JComboBox<String> cmbGenero;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtDataNascimento;
     private javax.swing.JTextField txtNome;

@@ -7,11 +7,11 @@ package models;
  */
 public class Consultas {
     private String data;
-    private Pacientes paciente;
+    private String cpfPaciente;
 
-    public Consultas(String data, Pacientes paciente) {
+    public Consultas(String data, String cpfPaciente) {
         this.data = data;
-        this.paciente = paciente;
+        this.cpfPaciente = cpfPaciente;
     }
 
     public String getData() {
@@ -22,11 +22,11 @@ public class Consultas {
         this.data = data;
     }
 
-    public Pacientes getPaciente() {
-        return paciente;
+    public String getCpfPaciente() {
+        return cpfPaciente;
     }
 
-    public void setPaciente(Pacientes paciente) {
-        this.paciente = paciente;
+    public void setCpfPaciente(String cpfPaciente) {
+        this.cpfPaciente = cpfPaciente;
     }
 }

@@ -3,8 +3,8 @@ use bdaula;
 create table paciente(
 	cpf varchar(14) primary key,
     nome varchar(50),
-    idade date,
-    genero char    
+    nascimento date,
+    sexo char    
 );
 
 create table consulta(
@@ -19,9 +19,8 @@ select * from paciente;
 select * from consulta;
 
 insert into paciente(cpf,nome,idade,genero) values ('123.123.123-12', 'joaquim', '1988/09/13','M');
+insert into paciente(cpf,nome,idade,genero) values ('321.321.321-32', 'joao', '1988/09/14','M');
 insert into consulta(dataConsulta, cpfPaciente) values ('2019/11/10', '123.123.123-12');
-insert into consulta(dataConsulta, cpfPaciente) values ('2019/11/11', '123.123.123-12');
+insert into consulta(dataConsulta, cpfPaciente) values ('2019/11/11', '321.321.321-32');
 
-select * from paciente where paciente.cpf join consulta.cpfPaciente;
-
-SELECT * FROM paciente INNER JOIN consulta on paciente.cpf = consulta.cpfPaciente and consulta.id = 3;
+SELECT * FROM paciente INNER JOIN consulta on paciente.cpf = consulta.cpfPaciente and paciente.nome = 'joaquim';

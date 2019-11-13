@@ -14,9 +14,9 @@ public class Pacientes {
     private String nome;
     private String cpf;
     private String nascimento;
-    private char sexo;
+    private String sexo;
 
-    public Pacientes(String nome, String cpf, String nascimento, char sexo) {
+    public Pacientes(String nome, String cpf, String nascimento, String sexo) {
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
@@ -47,11 +47,11 @@ public class Pacientes {
         this.nascimento = nascimento;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
     

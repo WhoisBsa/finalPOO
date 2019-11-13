@@ -1,12 +1,19 @@
 
 package views;
 
+import controllers.ControllerConsulta;
+import controllers.ControllerPacientes;
+import models.Pacientes;
+
 /**
  *
  * @author hemilio
  */
 public class CadastroConsulta extends javax.swing.JFrame {
 
+    private String data;
+    private String cpfPaciente;
+    
     /**
      * Creates new form CadastroConsulta
      */
@@ -78,6 +85,11 @@ public class CadastroConsulta extends javax.swing.JFrame {
         btnSalvarAlteracoes.setText("Salvar Alterações");
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setForeground(new java.awt.Color(255, 0, 51));
         btnExcluir.setText("Excluir");
@@ -141,7 +153,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
                     .addComponent(btnSalvar)
                     .addComponent(btnSalvarAlteracoes)
                     .addComponent(btnExcluir))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +167,24 @@ public class CadastroConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdConsultaActionPerformed
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        data = dataParaBanco(txtDataConsulta.getText());
+        cpfPaciente = txtCpf.getText();
+        
+        ControllerConsulta cc = new ControllerConsulta(data, cpfPaciente);
+        cc.salvar();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    
+    private String dataParaBanco(String d){
+        String data = d; 
+        String[] s = data.split("/"); 
+        String novaData = s[2]+"/"+s[1]+"/"+s[0];
+        
+        return novaData;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
