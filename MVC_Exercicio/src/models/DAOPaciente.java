@@ -72,4 +72,30 @@ public class DAOPaciente {
             DAOPaciente.fecharConexao(conexao);
         }
     }
+    
+    public void atualizar(Pacientes p){
+        String sql = "update paciente "
+                + "set nome = ?, nascimento = ?, sexo = ?"
+                + "where cpf = ?";;
+        
+        conexao = this.conectar();
+        
+        try{
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, p.getNome());
+            pst.setString(2, p.getNascimento());
+            pst.setString(3, p.getSexo());
+            pst.setString(4, p.getCpf());
+            int adicionado = pst.executeUpdate();
+            
+            if(adicionado > 0)
+                System.out.println("Paciente cadastrado com sucesso!");
+            else
+                System.out.println("Não foi possível cadastrar o cliente!");
+        }catch(SQLException e) {
+            System.out.println(e);
+        }finally {
+            DAOPaciente.fecharConexao(conexao);
+        }
+    }
 }

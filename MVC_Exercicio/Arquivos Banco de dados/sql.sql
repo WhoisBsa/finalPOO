@@ -4,7 +4,7 @@ create table paciente(
 	cpf varchar(14) primary key,
     nome varchar(50),
     nascimento date,
-    sexo char    
+    sexo char
 );
 
 create table consulta(

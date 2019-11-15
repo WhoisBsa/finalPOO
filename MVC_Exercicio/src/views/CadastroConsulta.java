@@ -185,6 +185,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
     }
     
     
+    
     /**
      * @param args the command line arguments
      */

@@ -19,4 +19,9 @@ public class ControllerPacientes {
         DAOPaciente dp = new DAOPaciente();
         dp.salvar(p);
     }
+    
+    public void atualizar(){
+        DAOPaciente dp = new DAOPaciente();
+        dp.atualizar(p);
+    }
 }

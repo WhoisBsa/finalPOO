@@ -76,6 +76,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
         txtCpf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnSalvarAlteracoes.setText("Salvar Alterações");
+        btnSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarAlteracoesActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +172,16 @@ public class CadastroPaciente extends javax.swing.JFrame {
         ControllerPacientes cp = new ControllerPacientes(nome, cpf,nascimento, sexo);
         cp.salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlteracoesActionPerformed
+        nome = txtNome.getText();
+        cpf = txtCpf.getText();
+        nascimento = dataParaBanco(txtDataNascimento.getText());
+        sexo = (String) cmbGenero.getSelectedItem();
+        
+        ControllerPacientes cp = new ControllerPacientes(nome, cpf,nascimento, sexo);
+        cp.atualizar();
+    }//GEN-LAST:event_btnSalvarAlteracoesActionPerformed
 
     
     private String dataParaBanco(String d){
