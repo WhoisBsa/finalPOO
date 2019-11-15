@@ -33,7 +33,7 @@ public class DAOPaciente {
             return DriverManager.getConnection(url, user, psswd);
             
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
             return null;
         }
     }
@@ -43,7 +43,7 @@ public class DAOPaciente {
             try {
                 con.close();
             }catch(SQLException e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }
@@ -64,11 +64,11 @@ public class DAOPaciente {
             int adicionado = pst.executeUpdate();
             
             if(adicionado > 0)
-                System.out.println("Paciente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso!");
             else
-                System.out.println("Não foi possível cadastrar o cliente!");
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar!");
         }catch(SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }finally {
             DAOPaciente.fecharConexao(conexao);
         }
@@ -90,11 +90,11 @@ public class DAOPaciente {
             int adicionado = pst.executeUpdate();
             
             if(adicionado > 0)
-                System.out.println("Paciente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Paciente alterado com sucesso!");
             else
-                System.out.println("Não foi possível cadastrar o cliente!");
+                JOptionPane.showMessageDialog(null, "Erro ao salvar!");
         }catch(SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }finally {
             DAOPaciente.fecharConexao(conexao);
         }
@@ -112,11 +112,11 @@ public class DAOPaciente {
             int adicionado = pst.executeUpdate();
             
             if(adicionado > 0)
-                System.out.println("Paciente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Deletado paciente!");
             else
-                System.out.println("Não foi possível cadastrar o cliente!");
+                JOptionPane.showMessageDialog(null, "Erro ao deletar");
         }catch(SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }finally {
             DAOPaciente.fecharConexao(conexao);
         }
@@ -137,7 +137,7 @@ public class DAOPaciente {
             return rs;
         }
         catch (SQLException e) {
-            System.out.println("Falha ao executar a query!");
+            JOptionPane.showMessageDialog(null, "Erro ao executar a busca!");
             
             return null;
         }
@@ -159,7 +159,7 @@ public class DAOPaciente {
             return rs;
         }
         catch (SQLException e) {
-            System.out.println("Falha ao executar a query!");
+            JOptionPane.showMessageDialog(null, "Erro ao executar a busca!");
             
             return null;
         }

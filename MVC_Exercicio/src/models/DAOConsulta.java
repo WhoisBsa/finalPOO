@@ -5,11 +5,14 @@
  */
 package models;
 
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.RootPaneUI;
 
 /**
  *
@@ -32,7 +35,7 @@ public class DAOConsulta {
             return DriverManager.getConnection(url, user, psswd);
             
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
             return null;
         }
     }
@@ -42,7 +45,7 @@ public class DAOConsulta {
             try {
                 con.close();
             }catch(SQLException e) {
-                System.out.println(e);
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }
@@ -61,11 +64,11 @@ public class DAOConsulta {
             int adicionado = pst.executeUpdate();
             
             if(adicionado > 0)
-                System.out.println("Consulta cadastrada com sucesso!");
+                JOptionPane.showMessageDialog(null, "Consulta marcada!");
             else
-                System.out.println("Não foi possível cadastrar a consulta!");
+                JOptionPane.showMessageDialog(null, "Falha ao registrar a consulta!");
         }catch(SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }finally {
             DAOConsulta.fecharConexao(conexao);
         }
@@ -87,8 +90,7 @@ public class DAOConsulta {
             return rs;
         }
         catch (SQLException e) {
-            System.out.println("Falha ao executar a query!");
-            
+                     
             return null;
         }
     }
@@ -107,11 +109,11 @@ public class DAOConsulta {
             int adicionado = pst.executeUpdate();
             
             if(adicionado > 0)
-                System.out.println("Paciente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
             else
-                System.out.println("Não foi possível cadastrar o cliente!");
+                JOptionPane.showMessageDialog(null, "Não foi possível atualizar");
         }catch(SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }finally {
             DAOPaciente.fecharConexao(conexao);
         }
@@ -129,11 +131,11 @@ public class DAOConsulta {
             int adicionado = pst.executeUpdate();
             
             if(adicionado > 0)
-                System.out.println("Paciente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Consulta excluida!");
             else
-                System.out.println("Não foi possível cadastrar o cliente!");
+                JOptionPane.showMessageDialog(null, "Erro ao excluir consulta!");
         }catch(SQLException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }finally {
             DAOPaciente.fecharConexao(conexao);
         }

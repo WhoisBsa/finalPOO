@@ -32,6 +32,9 @@ public class Principal extends javax.swing.JFrame {
 
         btnCadastrarPacientes = new javax.swing.JButton();
         btnCadastrarConsulta = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFerramentas = new javax.swing.JMenu();
         menuCadCon = new javax.swing.JMenuItem();
@@ -54,6 +57,15 @@ public class Principal extends javax.swing.JFrame {
                 btnCadastrarConsultaActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("DejaVu Math TeX Gyre", 1, 36)); // NOI18N
+        jLabel1.setText("HOSPITAL");
+
+        jLabel2.setFont(new java.awt.Font("DejaVu Math TeX Gyre", 1, 36)); // NOI18N
+        jLabel2.setText("vai com");
+
+        jLabel3.setFont(new java.awt.Font("DejaVu Math TeX Gyre", 1, 36)); // NOI18N
+        jLabel3.setText("DEUS!");
 
         menuFerramentas.setText("Ferramentas");
 
@@ -102,20 +114,34 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastrarPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrarConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCadastrarPacientes)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnCadastrarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(btnCadastrarPacientes)
+                .addGap(68, 68, 68)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(btnCadastrarConsulta)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarPacientes)
+                    .addComponent(btnCadastrarConsulta))
+                .addGap(137, 137, 137))
         );
 
         pack();
@@ -205,6 +231,9 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarConsulta;
     private javax.swing.JButton btnCadastrarPacientes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menuAjuda;

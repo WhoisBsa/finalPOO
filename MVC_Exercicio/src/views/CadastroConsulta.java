@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import models.Pacientes;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -44,6 +45,8 @@ public class CadastroConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
@@ -63,12 +66,27 @@ public class CadastroConsulta extends javax.swing.JFrame {
         lblIdade = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         btnBuscarConsulta = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblConsultas = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFerramentas = new javax.swing.JMenu();
         menuCadCon = new javax.swing.JMenuItem();
         menuCadPac = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +141,11 @@ public class CadastroConsulta extends javax.swing.JFrame {
 
         btnExcluir.setForeground(new java.awt.Color(255, 0, 51));
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Gênero:");
 
@@ -144,6 +167,19 @@ public class CadastroConsulta extends javax.swing.JFrame {
                 btnBuscarConsultaActionPerformed(evt);
             }
         });
+
+        tblConsultas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblConsultas);
 
         menuFerramentas.setText("Ferramentas");
 
@@ -189,7 +225,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
@@ -213,16 +249,9 @@ public class CadastroConsulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblIdade))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(77, 77, 77)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSalvar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSalvarAlteracoes)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExcluir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtDataConsulta, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
@@ -231,13 +260,22 @@ public class CadastroConsulta extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtIdConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnBuscarConsulta)))))
-                .addContainerGap(150, Short.MAX_VALUE))
+                                .addComponent(btnBuscarConsulta))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSalvar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSalvarAlteracoes)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -259,7 +297,9 @@ public class CadastroConsulta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblIdade))
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
@@ -273,7 +313,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
                     .addComponent(btnSalvar)
                     .addComponent(btnSalvarAlteracoes)
                     .addComponent(btnExcluir))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -289,6 +329,8 @@ public class CadastroConsulta extends javax.swing.JFrame {
         
         ControllerConsulta cc = new ControllerConsulta(dataConsulta, cpfPaciente);
         cc.salvar();
+        
+        btnBuscarCpfActionPerformed(evt);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void menuCadConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadConActionPerformed
@@ -336,6 +378,16 @@ public class CadastroConsulta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, e);
             }
         }
+        
+        rs = cp.buscarConsultas();
+        
+        if(rs != null){
+            try {
+                tblConsultas.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception e) {
+            }
+            
+        }
     }//GEN-LAST:event_btnBuscarCpfActionPerformed
 
     private void btnBuscarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarConsultaActionPerformed
@@ -375,6 +427,8 @@ public class CadastroConsulta extends javax.swing.JFrame {
         
         ControllerConsulta cc = new ControllerConsulta(id, dataConsulta);
         cc.atualizar();
+        
+        btnBuscarCpfActionPerformed(evt);
     }//GEN-LAST:event_btnSalvarAlteracoesActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -385,6 +439,15 @@ public class CadastroConsulta extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(rootPane, sobre);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        id = Integer.parseInt(txtIdConsulta.getText());
+        
+        ControllerConsulta cc = new ControllerConsulta(id);
+        cc.excluir();
+        
+        btnBuscarCpfActionPerformed(evt);
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     
     private String dataParaBanco(String d){
@@ -468,6 +531,9 @@ public class CadastroConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDataNascimento;
     private javax.swing.JLabel lblGenero;
     private javax.swing.JLabel lblIdade;
@@ -476,6 +542,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCadCon;
     private javax.swing.JMenuItem menuCadPac;
     private javax.swing.JMenu menuFerramentas;
+    private javax.swing.JTable tblConsultas;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtDataConsulta;
     private javax.swing.JTextField txtIdConsulta;
