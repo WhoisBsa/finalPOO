@@ -6,6 +6,7 @@ package models;
  * @author hemilio
  */
 public class Consultas {
+    private int id;
     private String data;
     private String cpfPaciente;
 
@@ -14,6 +15,23 @@ public class Consultas {
         this.cpfPaciente = cpfPaciente;
     }
 
+    public Consultas(int id) {
+        this.id = id;
+    }
+    
+    public Consultas(int id, String data){
+        this.id = id;
+        this.data = data;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+        
     public String getData() {
         return data;
     }

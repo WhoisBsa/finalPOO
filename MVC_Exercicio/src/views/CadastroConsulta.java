@@ -3,6 +3,12 @@ package views;
 
 import controllers.ControllerConsulta;
 import controllers.ControllerPacientes;
+import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
 import models.Pacientes;
 
 /**
@@ -11,13 +17,20 @@ import models.Pacientes;
  */
 public class CadastroConsulta extends javax.swing.JFrame {
 
-    private String data;
+    private int id;
+    private String dataConsulta;
     private String cpfPaciente;
+    
+    private String nome;
+    private String nascimento;
+    private String sexo;
+    private ResultSet rs;
     
     /**
      * Creates new form CadastroConsulta
      */
     public CadastroConsulta() {
+        this.rs = null;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -35,7 +48,6 @@ public class CadastroConsulta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCpf = new javax.swing.JFormattedTextField();
         txtDataConsulta = new javax.swing.JFormattedTextField();
-        txtNomePaciente = new javax.swing.JTextField();
         btnBuscarCpf = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -43,6 +55,20 @@ public class CadastroConsulta extends javax.swing.JFrame {
         btnSalvarAlteracoes = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        lblGenero = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblDataNascimento = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblIdade = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        btnBuscarConsulta = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuFerramentas = new javax.swing.JMenu();
+        menuCadCon = new javax.swing.JMenuItem();
+        menuCadPac = new javax.swing.JMenuItem();
+        menuAjuda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,13 +90,12 @@ public class CadastroConsulta extends javax.swing.JFrame {
         }
         txtDataConsulta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtNomePaciente.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarCpf.setText("Buscar");
+        btnBuscarCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomePacienteActionPerformed(evt);
+                btnBuscarCpfActionPerformed(evt);
             }
         });
-
-        btnBuscarCpf.setText("Buscar");
 
         jLabel3.setText("Data Consulta:");
 
@@ -83,6 +108,11 @@ public class CadastroConsulta extends javax.swing.JFrame {
         });
 
         btnSalvarAlteracoes.setText("Salvar Alterações");
+        btnSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarAlteracoesActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +124,59 @@ public class CadastroConsulta extends javax.swing.JFrame {
         btnExcluir.setForeground(new java.awt.Color(255, 0, 51));
         btnExcluir.setText("Excluir");
 
+        jLabel5.setText("Gênero:");
+
+        lblGenero.setText("sexo");
+
+        jLabel6.setText("Nascimento:");
+
+        lblDataNascimento.setText("data");
+
+        jLabel7.setText("Idade:");
+
+        lblIdade.setText("anos");
+
+        lblNome.setText("nome");
+
+        btnBuscarConsulta.setText("Buscar");
+        btnBuscarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarConsultaActionPerformed(evt);
+            }
+        });
+
+        menuFerramentas.setText("Ferramentas");
+
+        menuCadCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK));
+        menuCadCon.setText("Cadastrar Paciente");
+        menuCadCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadConActionPerformed(evt);
+            }
+        });
+        menuFerramentas.add(menuCadCon);
+
+        menuCadPac.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        menuCadPac.setText("Cadastrar Consulta");
+        menuCadPac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadPacActionPerformed(evt);
+            }
+        });
+        menuFerramentas.add(menuCadPac);
+
+        jMenuBar1.add(menuFerramentas);
+
+        menuAjuda.setText("Ajuda");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem1.setText("Sobre");
+        menuAjuda.add(jMenuItem1);
+
+        jMenuBar1.add(menuAjuda);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,77 +186,191 @@ public class CadastroConsulta extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDataNascimento))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNome))
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBuscarCpf))
-                            .addComponent(txtNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblGenero))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblIdade))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSalvar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSalvarAlteracoes)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtDataConsulta, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtIdConsulta)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalvarAlteracoes)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExcluir)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtIdConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscarConsulta)))))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarCpf))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblGenero))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblDataNascimento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblIdade))
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarConsulta))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnSalvarAlteracoes)
                     .addComponent(btnExcluir))
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNomePacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomePacienteActionPerformed
 
     private void txtIdConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdConsultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdConsultaActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        data = dataParaBanco(txtDataConsulta.getText());
+        dataConsulta = dataParaBanco(txtDataConsulta.getText());
         cpfPaciente = txtCpf.getText();
         
-        ControllerConsulta cc = new ControllerConsulta(data, cpfPaciente);
+        ControllerConsulta cc = new ControllerConsulta(dataConsulta, cpfPaciente);
         cc.salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void menuCadConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadConActionPerformed
+        CadastroPaciente cp = new CadastroPaciente();
+        cp.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_menuCadConActionPerformed
+
+    private void menuCadPacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadPacActionPerformed
+        CadastroConsulta cc = new CadastroConsulta();
+        cc.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_menuCadPacActionPerformed
+
+    private void btnBuscarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCpfActionPerformed
+        cpfPaciente = txtCpf.getText();
+        
+        ControllerPacientes cp = new ControllerPacientes(nome, cpfPaciente, nascimento, sexo);
+        rs = cp.buscar();
+        
+        if(rs != null){
+            try {
+                rs.next();
+            
+                lblNome.setText(rs.getString("nome"));
+                lblDataNascimento.setText(dataParaBanco(tracoBarra(rs.getString("nascimento"))));
+                
+                if(rs.getString("sexo").equalsIgnoreCase("F"))
+                    lblGenero.setText("Feminino");
+                else
+                    lblGenero.setText("Masculino");
+                
+                nascimento = dataParaBanco(tracoBarra(rs.getString("nascimento")));
+                String idade = String.valueOf(idade(nascimento));
+                
+                lblIdade.setText(idade);
+                
+                txtDataConsulta.setText("");
+                txtIdConsulta.setText("");
+                
+                                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e);
+            }
+        }
+    }//GEN-LAST:event_btnBuscarCpfActionPerformed
+
+    private void btnBuscarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarConsultaActionPerformed
+        id = Integer.parseInt(txtIdConsulta.getText());
+        
+        ControllerConsulta cc = new ControllerConsulta(id);
+        rs = cc.buscar();
+        
+        if(rs != null){
+            try {
+                rs.next();
+                lblNome.setText(rs.getString("paciente.nome"));
+                
+                if(rs.getString("sexo").equalsIgnoreCase("F"))
+                    lblGenero.setText("Feminino");
+                else
+                    lblGenero.setText("Masculino");
+                
+                lblDataNascimento.setText(dataParaBanco(tracoBarra(rs.getString("nascimento"))));
+                nascimento = dataParaBanco(tracoBarra(rs.getString("nascimento")));
+                String idade = String.valueOf(idade(nascimento));
+                lblIdade.setText(idade);
+                
+                txtCpf.setText(rs.getString("cpf"));
+                
+                txtDataConsulta.setText(dataParaBanco(tracoBarra(rs.getString("dataConsulta"))));
+                
+            } catch (Exception e) {
+            }
+            
+        }
+    }//GEN-LAST:event_btnBuscarConsultaActionPerformed
+
+    private void btnSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlteracoesActionPerformed
+        id = Integer.parseInt(txtIdConsulta.getText());
+        dataConsulta = dataParaBanco(txtDataConsulta.getText());
+        
+        ControllerConsulta cc = new ControllerConsulta(id, dataConsulta);
+        cc.atualizar();
+    }//GEN-LAST:event_btnSalvarAlteracoesActionPerformed
 
     
     private String dataParaBanco(String d){
@@ -184,6 +381,27 @@ public class CadastroConsulta extends javax.swing.JFrame {
         return novaData;
     }
     
+    private String tracoBarra(String d){
+        String barra = d.replaceAll("-", "/");
+        
+        return barra;
+    }
+    
+    
+    public int idade(String nascimento) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Date inicial = sdf.parse(nascimento);
+        Date atual = new Date();
+        
+        long diferencaMillis = Math.abs(atual.getTime() - inicial.getTime());
+        
+        long diff = TimeUnit.DAYS.convert(diferencaMillis, TimeUnit.MILLISECONDS);
+        
+        int anos = (int) Math.abs(diff/365);
+        
+        return anos;
+    }
     
     
     /**
@@ -222,6 +440,7 @@ public class CadastroConsulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarConsulta;
     private javax.swing.JButton btnBuscarCpf;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
@@ -230,9 +449,21 @@ public class CadastroConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel lblDataNascimento;
+    private javax.swing.JLabel lblGenero;
+    private javax.swing.JLabel lblIdade;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenuItem menuCadCon;
+    private javax.swing.JMenuItem menuCadPac;
+    private javax.swing.JMenu menuFerramentas;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtDataConsulta;
     private javax.swing.JTextField txtIdConsulta;
-    private javax.swing.JTextField txtNomePaciente;
     // End of variables declaration//GEN-END:variables
 }

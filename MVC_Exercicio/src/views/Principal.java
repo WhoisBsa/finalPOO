@@ -34,8 +34,6 @@ public class Principal extends javax.swing.JFrame {
         menuFerramentas = new javax.swing.JMenu();
         menuCadCon = new javax.swing.JMenuItem();
         menuCadPac = new javax.swing.JMenuItem();
-        menuVisPac = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -74,19 +72,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         menuFerramentas.add(menuCadPac);
-
-        menuVisPac.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK));
-        menuVisPac.setText("Visualiza Paciente");
-        menuVisPac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuVisPacActionPerformed(evt);
-            }
-        });
-        menuFerramentas.add(menuVisPac);
-
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.SHIFT_MASK));
-        jMenuItem3.setText("Visualiza Consultas");
-        menuFerramentas.add(jMenuItem3);
 
         jMenuBar1.add(menuFerramentas);
 
@@ -141,21 +126,16 @@ public class Principal extends javax.swing.JFrame {
     private void menuCadConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadConActionPerformed
         CadastroPaciente cp = new CadastroPaciente();
         cp.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_menuCadConActionPerformed
 
     private void menuCadPacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadPacActionPerformed
         CadastroConsulta cc = new CadastroConsulta();
         cc.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_menuCadPacActionPerformed
-
-    private void menuVisPacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisPacActionPerformed
-        VisualizaPaciente vp = new VisualizaPaciente();
-        vp.setVisible(true);
-    }//GEN-LAST:event_menuVisPacActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,11 +180,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarPacientes;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenuItem menuCadCon;
     private javax.swing.JMenuItem menuCadPac;
     private javax.swing.JMenu menuFerramentas;
-    private javax.swing.JMenuItem menuVisPac;
     // End of variables declaration//GEN-END:variables
 }

@@ -70,4 +70,73 @@ public class DAOConsulta {
             DAOConsulta.fecharConexao(conexao);
         }
     }
+    
+    public ResultSet buscar(Consultas c){
+        String sql = "SELECT * FROM paciente "
+                + "INNER JOIN consulta on paciente.cpf = consulta.cpfPaciente "
+                + "and consulta.id = ?";
+        
+        conexao = this.conectar();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, c.getId());
+
+            rs = pst.executeQuery();
+            
+            return rs;
+        }
+        catch (SQLException e) {
+            System.out.println("Falha ao executar a query!");
+            
+            return null;
+        }
+    }
+    
+    public void atualizar(Consultas c){
+        String sql = "update consulta "
+                + "set dataConsulta = ? "
+                + "where id = ?";;
+        
+        conexao = this.conectar();
+        
+        try{
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, c.getData());
+            pst.setInt(2, c.getId());
+            int adicionado = pst.executeUpdate();
+            
+            if(adicionado > 0)
+                System.out.println("Paciente cadastrado com sucesso!");
+            else
+                System.out.println("Não foi possível cadastrar o cliente!");
+        }catch(SQLException e) {
+            System.out.println(e);
+        }finally {
+            DAOPaciente.fecharConexao(conexao);
+        }
+    }
+    
+    public void excluir(Consultas c){
+        String sql = "delete from consulta "
+                + "where id = ?";
+        
+        conexao = this.conectar();
+        
+        try{
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, c.getId());
+            int adicionado = pst.executeUpdate();
+            
+            if(adicionado > 0)
+                System.out.println("Paciente cadastrado com sucesso!");
+            else
+                System.out.println("Não foi possível cadastrar o cliente!");
+        }catch(SQLException e) {
+            System.out.println(e);
+        }finally {
+            DAOPaciente.fecharConexao(conexao);
+        }
+    }
+            
 }

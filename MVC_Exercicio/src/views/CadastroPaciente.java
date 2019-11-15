@@ -56,6 +56,12 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsultas = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuFerramentas = new javax.swing.JMenu();
+        menuCadCon = new javax.swing.JMenuItem();
+        menuCadPac = new javax.swing.JMenuItem();
+        menuAjuda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +132,38 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblConsultas);
 
         jLabel5.setText("CONSULTAS");
+
+        menuFerramentas.setText("Ferramentas");
+
+        menuCadCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK));
+        menuCadCon.setText("Cadastrar Paciente");
+        menuCadCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadConActionPerformed(evt);
+            }
+        });
+        menuFerramentas.add(menuCadCon);
+
+        menuCadPac.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        menuCadPac.setText("Cadastrar Consulta");
+        menuCadPac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadPacActionPerformed(evt);
+            }
+        });
+        menuFerramentas.add(menuCadPac);
+
+        jMenuBar1.add(menuFerramentas);
+
+        menuAjuda.setText("Ajuda");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem1.setText("Sobre");
+        menuAjuda.add(jMenuItem1);
+
+        jMenuBar1.add(menuAjuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,7 +240,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -269,6 +307,20 @@ public class CadastroPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void menuCadConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadConActionPerformed
+        CadastroPaciente cp = new CadastroPaciente();
+        cp.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_menuCadConActionPerformed
+
+    private void menuCadPacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadPacActionPerformed
+        CadastroConsulta cc = new CadastroConsulta();
+        cc.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_menuCadPacActionPerformed
+
     
     private String dataParaBanco(String d){
         String data = d; 
@@ -282,6 +334,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         String barra = d.replaceAll("-", "/");
         return barra;
     }
+    
     
     /**
      * @param args the command line arguments
@@ -332,7 +385,13 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenuItem menuCadCon;
+    private javax.swing.JMenuItem menuCadPac;
+    private javax.swing.JMenu menuFerramentas;
     private javax.swing.JTable tblConsultas;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtDataNascimento;
