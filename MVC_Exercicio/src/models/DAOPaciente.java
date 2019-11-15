@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -96,6 +97,71 @@ public class DAOPaciente {
             System.out.println(e);
         }finally {
             DAOPaciente.fecharConexao(conexao);
+        }
+    }
+    
+    public void excluir(Pacientes p){
+        String sql = "delete from paciente "
+                + "where cpf = ?";
+        
+        conexao = this.conectar();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, p.getCpf());
+            int adicionado = pst.executeUpdate();
+            
+            if(adicionado > 0)
+                System.out.println("Paciente cadastrado com sucesso!");
+            else
+                System.out.println("Não foi possível cadastrar o cliente!");
+        }catch(SQLException e) {
+            System.out.println(e);
+        }finally {
+            DAOPaciente.fecharConexao(conexao);
+        }
+        
+    }
+    
+    public ResultSet buscar(Pacientes p){
+        String sql = "select * from paciente where cpf = ?";
+        
+        conexao = this.conectar();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, p.getCpf());
+
+            rs = pst.executeQuery();
+            
+            return rs;
+        }
+        catch (SQLException e) {
+            System.out.println("Falha ao executar a query!");
+            
+            return null;
+        }
+    }
+    
+    public ResultSet buscarConsultas(Pacientes p){
+        String sql = "SELECT consulta.id, consulta.dataConsulta, paciente.nome "
+                + "FROM paciente INNER JOIN consulta on paciente.cpf = consulta.cpfPaciente "
+                + "and cpf = ?";
+        
+        conexao = this.conectar();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, p.getCpf());
+
+            rs = pst.executeQuery();
+            
+            return rs;
+        }
+        catch (SQLException e) {
+            System.out.println("Falha ao executar a query!");
+            
+            return null;
         }
     }
 }
