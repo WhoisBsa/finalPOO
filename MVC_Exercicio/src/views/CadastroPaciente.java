@@ -159,6 +159,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem1.setText("Sobre");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         menuAjuda.add(jMenuItem1);
 
         jMenuBar1.add(menuAjuda);
@@ -320,6 +325,15 @@ public class CadastroPaciente extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_menuCadPacActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        String sobre = "Produzido por: Hemílio Lauro e Gustavo de Paula\n"
+                + "Disciplina: Programação orientada a objetos\n"
+                + "Professor: Robson\n"
+                + "Ano: 2019";
+        
+        JOptionPane.showMessageDialog(rootPane, sobre);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     
     private String dataParaBanco(String d){
