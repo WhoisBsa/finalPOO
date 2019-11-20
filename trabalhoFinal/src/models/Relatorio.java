@@ -6,6 +6,7 @@ package models;
  * @author hemiliom
  */
 public class Relatorio {
+    private String id;
     private String aplicacao;
     private String matricula;
     private String dataInicio;
@@ -39,6 +40,16 @@ public class Relatorio {
         this.numOs = numOs;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
+    
     
     public String getAplicacao() {
         return aplicacao;
