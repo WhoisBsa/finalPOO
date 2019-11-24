@@ -25,9 +25,9 @@ create table relatorio (
 );
 
 insert into funcionario 
-	(matricula, nome, turno) 
+	(matricula, nome, turno, pwd) 
 values 
-	('5705', 'hemílio lindo', '07h - 17h');
+	('5705', 'hemílio lindo', '07h - 17h', 'hemilio123');
 
 insert into relatorio 
 	(aplicacao, matricula, 
@@ -37,3 +37,8 @@ values
 	('M0702M','5705','2019-11-20 15:57:00',
     '2019-11-20 16:30:00','limpando o salão',
     'E021312', 13, '0254321');
+
+
+select * from funcionario;
+
+
