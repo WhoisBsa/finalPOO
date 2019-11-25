@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import models.DAOMecanico;
+import models.DAOFuncionario;
 import models.Mecanico;
 import java.sql.ResultSet;
 
@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  */
 public class MecanicoController {
     private Mecanico m;
-    private DAOMecanico dm;
+    private DAOFuncionario df;
     
     public MecanicoController() {
         m = new Mecanico();
@@ -32,19 +32,19 @@ public class MecanicoController {
     }
     
     public String salvar() {
-        return dm.salvar(m);
+        return df.salvar(m);
     }
     
     public String remover(String matricula) {
-        return dm.delete(matricula);
+        return df.delete(matricula);
     }
     
     public String atualizar(String matricula) {
-        return dm.atualizar(m.getNome(), m.getFuncao(), m.getTurno(), 
+        return df.atualizar(m.getNome(), m.getFuncao(), m.getTurno(), 
                 m.getSalario(), m.getPwd(), m.getMatricula());
     }
     
     public ResultSet vizualizar(String matricula) {
-        return dm.visualizar(matricula);
+        return df.visualizar(matricula);
     }
 }

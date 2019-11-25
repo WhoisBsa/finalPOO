@@ -2,7 +2,7 @@
 package controllers;
 
 import java.sql.ResultSet;
-import models.DAOEletricista;
+import models.DAOFuncionario;
 import models.Eletricista;
 
 /**
@@ -11,7 +11,7 @@ import models.Eletricista;
  */
 public class EletricistaController {
     private Eletricista e;
-    private DAOEletricista de;
+    private DAOFuncionario df;
     
     public EletricistaController() {
         e = new Eletricista();
@@ -27,19 +27,19 @@ public class EletricistaController {
     }
     
     public String salvar() {
-        return de.salvar(e);
+        return df.salvar(e);
     }
     
     public String remover(String matricula) {
-        return de.delete(matricula);
+        return df.delete(matricula);
     }
     
     public String atualizar(String matricula) {
-        return de.atualizar(e.getNome(), e.getFuncao(), e.getTurno(), 
+        return df.atualizar(e.getNome(), e.getFuncao(), e.getTurno(), 
                 e.getSalario(), e.getPwd(), e.getMatricula());
     }
     
     public ResultSet vizualizar(String matricula) {
-        return de.visualizar(matricula);
+        return df.visualizar(matricula);
     }
 }
