@@ -42,4 +42,8 @@ public class EletricistaController {
     public ResultSet vizualizar(String matricula) {
         return df.visualizar(matricula);
     }
+    
+    public ResultSet login(Eletricista e){
+        return df.login(e);
+    }
 }
