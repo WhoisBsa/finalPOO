@@ -162,4 +162,44 @@ public class DAOFuncionario {
             return rs;
         }
     }
+    
+    public ResultSet login(Mecanico m) {
+        String sql = "slect * from funcionario where matricula = ? and pwd = ?";
+        
+        conexao = ModuloConexao.conectar();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            
+            pst.setString(1, m.getMatricula());
+            pst.setString(2, m.getPwd());
+            
+            rs = pst.executeQuery();
+            
+        } catch(SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            return rs;
+        }
+    }
+    
+    public ResultSet login(Eletricista e) {
+        String sql = "slect * from funcionario where matricula = ? and pwd = ?";
+        
+        conexao = ModuloConexao.conectar();
+        
+        try {
+            pst = conexao.prepareStatement(sql);
+            
+            pst.setString(1, e.getMatricula());
+            pst.setString(2, e.getPwd());
+            
+            rs = pst.executeQuery();
+            
+        } catch(SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            return rs;
+        }
+    }
 }
