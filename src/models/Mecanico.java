@@ -13,6 +13,10 @@ public class Mecanico extends Funcionario{
         
     }
 
+    public Mecanico(String matricula, String pwd) {
+        super(matricula, pwd);
+    }
+
     public Mecanico(String nome, String matricula, String turno, String funcao, 
             double salario, String pwd) {
         super(nome, matricula, turno, pwd);

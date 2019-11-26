@@ -15,6 +15,11 @@ public abstract class Funcionario {
         
     }
     
+    public Funcionario(String matricula, String pwd) {
+        this.matricula = matricula;
+        this.pwd = pwd;
+    }
+    
     public Funcionario(String nome, String matricula, String turno, String pwd) {
         this.nome = nome;
         this.matricula = matricula;

@@ -12,6 +12,10 @@ public class Eletricista extends Funcionario {
     public Eletricista() {
         
     }
+    
+    public Eletricista(String matricula, String pwd) {
+        super(matricula, pwd);
+    }
 
     public Eletricista(String nome, String matricula, String turno, String funcao, 
             double salario, String pwd) {
