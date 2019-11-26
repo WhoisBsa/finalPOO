@@ -164,7 +164,7 @@ public class DAOFuncionario {
     }
     
     public ResultSet login(Mecanico m) {
-        String sql = "slect * from funcionario where matricula = ? and pwd = ?";
+        String sql = "select * from funcionario where matricula = ? and pwd = ?";
         
         conexao = ModuloConexao.conectar();
         
@@ -184,7 +184,7 @@ public class DAOFuncionario {
     }
     
     public ResultSet login(Eletricista e) {
-        String sql = "slect * from funcionario where matricula = ? and pwd = ?";
+        String sql = "select * from funcionario where matricula = ? and pwd = ?";
         
         conexao = ModuloConexao.conectar();
         
