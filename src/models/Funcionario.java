@@ -7,6 +7,7 @@ package models;
  */
 public abstract class Funcionario {
     private String nome;
+    private String pwd;
     private String matricula;
     private String turno;
 
@@ -14,10 +15,11 @@ public abstract class Funcionario {
         
     }
     
-    public Funcionario(String nome, String matricula, String turno) {
+    public Funcionario(String nome, String matricula, String turno, String pwd) {
         this.nome = nome;
         this.matricula = matricula;
         this.turno = turno;
+        this.pwd = pwd;
     }
 
     public String getNome() {
@@ -43,8 +45,13 @@ public abstract class Funcionario {
     public void setTurno(String turno) {
         this.turno = turno;
     }
-    
-    
-    
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
     
 }
