@@ -47,4 +47,10 @@ public class MecanicoController {
     public ResultSet vizualizar(String matricula) {
         return df.visualizar(matricula);
     }
+    
+    public ResultSet login(Mecanico m){
+        return df.login(m);
+    }
+    
+    
 }
