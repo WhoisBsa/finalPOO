@@ -5,15 +5,18 @@
  */
 package views;
 
+import models.Funcionario;
+import java.sql.ResultSet;
+
 /**
  *
  * @author hemilio
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    private String matricula, pwd;
+    private ResultSet rs = null;
+    
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -37,6 +40,11 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Matrícula:");
 
@@ -75,6 +83,13 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        matricula = txtMatricula.getText();
+        pwd = String.valueOf(txtPwd.getPassword());
+        
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
