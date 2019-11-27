@@ -6,6 +6,7 @@
 package views;
 
 import controllers.EletricistaController;
+import controllers.MecanicoController;
 import java.sql.ResultSet;
 import models.Eletricista;
 import models.Mecanico;
@@ -107,7 +108,7 @@ public class Login extends javax.swing.JFrame {
         tipo = cmbTipo.getSelectedIndex();
         
         eletricista = new Eletricista(matricula, pwd);
-//        mecanico = new Mecanico(matricula, pwd);
+        mecanico = new Mecanico(matricula, pwd);
         
         if (tipo == 0){
             EletricistaController ec = new EletricistaController();
@@ -120,8 +121,21 @@ public class Login extends javax.swing.JFrame {
                 }
             } catch (Exception ex) {
                 
-            }
+            }   
+        }
+        
+        else{
+            MecanicoController mc = new MecanicoController();
+            rs = mc.login(mecanico);
             
+            try {
+                if(rs.next()){
+                    System.out.println(rs.getString("matricula"));
+                    System.out.println(rs.getString("pwd"));
+                }
+            } catch (Exception ex) {
+                
+            }
         }
         
         
