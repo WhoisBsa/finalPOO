@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  */
 public class MecanicoController {
     private Mecanico m;
-    private DAOFuncionario df;
+    private DAOFuncionario df = new DAOFuncionario();
     
     public MecanicoController() {
         m = new Mecanico();
@@ -51,6 +51,4 @@ public class MecanicoController {
     public ResultSet login(Mecanico m){
         return df.login(m);
     }
-    
-    
 }
