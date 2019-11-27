@@ -8,6 +8,7 @@ package views;
 import controllers.EletricistaController;
 import java.sql.ResultSet;
 import models.Eletricista;
+import models.Mecanico;
 
 /**
  *
@@ -17,8 +18,9 @@ public class Login extends javax.swing.JFrame {
 
     private String matricula, pwd;
     private int tipo;
-    private ResultSet rs = null;
-    private Eletricista e = null;
+    private ResultSet rs;
+    private Eletricista eletricista = null;
+    private Mecanico mecanico = null;
     
     public Login() {
         initComponents();
@@ -104,18 +106,20 @@ public class Login extends javax.swing.JFrame {
         pwd = String.valueOf(txtPwd.getPassword());
         tipo = cmbTipo.getSelectedIndex();
         
-        e = new Eletricista(matricula, pwd);
+        eletricista = new Eletricista(matricula, pwd);
+//        mecanico = new Mecanico(matricula, pwd);
         
         if (tipo == 0){
-            EletricistaController ec = new EletricistaController(e);
-            rs = ec.login(e);
+            EletricistaController ec = new EletricistaController();
+            rs = ec.login(eletricista);
             
             try {
                 if(rs.next()){
-                    System.out.println(rs.getString(matricula));
-                    System.out.println(rs.getString(pwd));
+                    System.out.println(rs.getString("matricula"));
+                    System.out.println(rs.getString("pwd"));
                 }
-            } catch (Exception e) {
+            } catch (Exception ex) {
+                
             }
             
         }
