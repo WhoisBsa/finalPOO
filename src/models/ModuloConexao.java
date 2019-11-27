@@ -18,6 +18,7 @@ public class ModuloConexao {
     public static final String url = "jdbc:mysql://localhost:3306/tupi";
     public static final String user = "root";
     public static final String psswd = "root";
+//    public static final String psswd = "u2kW.#dp";
     
     public static java.sql.Connection conectar() {
         try {
