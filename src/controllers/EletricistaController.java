@@ -11,7 +11,7 @@ import models.Eletricista;
  */
 public class EletricistaController {
     private Eletricista e;
-    private DAOFuncionario df;
+    private DAOFuncionario df = new DAOFuncionario();
     
     public EletricistaController() {
         e = new Eletricista();
@@ -44,6 +44,6 @@ public class EletricistaController {
     }
     
     public ResultSet login(Eletricista e){
-        return df.login(e);
+        return df.login(e); 
     }
 }
